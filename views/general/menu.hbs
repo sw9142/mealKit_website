@@ -1,0 +1,30 @@
+ <section class="section-onthemenu">
+        <div class="inner-onthemenu">
+            <div class="onthemenu-title-container">
+                <div class="onthemenu-title">Our Menu for this week</div>
+                <div class="onthemenu-subtitle">Select your favorite 20 different receipts each week </div>
+            </div>
+            <div class="onthemenu-mealtype">
+                 {{category_cm}} 
+            </div>
+            <ul class="onthemenu-meal-list" data-position="0">
+              
+                {{#each classicMeals}}
+                      {{>mealCardAll this}}
+                {{/each}}
+             </ul>
+
+             
+               <div class="onthemenu-mealtype">
+                 {{ category_km}} 
+              </div>
+
+            <ul class="onthemenu-meal-list" data-position="0">
+        
+                {{#each kidMeals}}
+                  {{>mealCardAll this}}
+                {{/each}}
+             </ul>
+
+        </div>
+</section>

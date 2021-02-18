@@ -1,0 +1,77 @@
+   {{>hero}}
+ 
+  <section>
+        <div class="inner-howitworks">
+          <div class="howitworks-maintitle">
+            <h1>How It Works?</h1>
+          </div>
+          <div class="howitworks-container">
+            <ul class="howitworks-list">
+              <li class="howitworks">
+                <div class="howitworks-img-container">
+                <img class="howitworks-img" src="howitworks/ordering food.jpg" />
+                </div>
+                <div class="howitworks-desc">
+                  <div class="howitworks_title">Choose what you want</div>
+                  <div class="howitworks_subtitle">
+                    Order in advance from our menu featuring delicious specials
+                    each week
+                  </div>
+                </div>
+              </li>
+              <li class="howitworks">
+                <div class="howitworks-desc">
+                  <div class="howitworks_title" id="remove">
+                    Then our Chef will cook for you
+                  </div>
+                  <div class="howitworks_subtitle">
+                    Enjoy Chef-made meals with selected-fresh
+                    ingredients..........
+                  </div>
+                </div>
+                    <div class="howitworks-img-container" id="addnext">
+                <img class="howitworks-img" src="howitworks/cooking2.jpg" />
+                </div>
+              </li>
+              <li class="howitworks">
+                    <div class="howitworks-img-container">
+                <img class="howitworks-img" src="howitworks/fooddelivery.jpg" />
+                    </div>
+                <div class="howitworks-desc">
+                  <div class="howitworks_title">
+                    We deliver right to your door!
+                  </div>
+                  <div class="howitworks_subtitle">
+                    Our in-house culinary team uses premium ingredients to
+                    create unique menus and products for breakfast, lunch, and
+                    dinner
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-topmeal">
+        <div class="inner">
+          <div class="topmeal-title">Our Top meals for this week</div>
+          <div class="topmeal-container">
+            <div class="topmeal-mealtype-container">
+              <div class="topmeal-mealtype">
+                <div class="mealtype-lunch">LUNCH</div>
+                <div class="mealtype-dinner">DINNER</div>
+              </div>
+              <div class="topmeal-arrows">
+                <i class="slide-prev fas fa-chevron-circle-left" id="0"></i>
+                <i class="slide-next fas fa-chevron-circle-right" id="0"></i>
+              </div>
+            </div>
+          </div>
+            <ul class="meal-list" data-position="0">
+                  {{#each menu}}
+                    {{>mealCard this}}
+                  {{/each}}
+            </ul>        
+        </div>
+      </section>

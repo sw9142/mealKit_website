@@ -1,0 +1,1259 @@
+/*
+font-family: 'Abril Fatface', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Noto Sans JP', sans-serif;
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&family=Noto+Sans+JP&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+:root {
+  /* --text-color: #747c37; */
+  --text-color: rgb(19, 19, 31);
+}
+
+html,
+body {
+  margin: 0 auto;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.topbar {
+  margin: 0 auto;
+  background-color: #61663b;
+  height: 25px;
+  width: 100%;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 4px;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  background-color: whitesmoke;
+}
+
+.bars {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.navbar-background {
+  width: 100%;
+
+  background-color: whitesmoke;
+}
+.inner {
+  width: 100%;
+  height: 100%;
+  padding: 0rem 2rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.inner-howitworks {
+  width: 100%;
+  height: 100%;
+  padding: 0rem 2rem 5rem 2rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.inner-onthemenu {
+  width: 100%;
+  height: 100%;
+  padding: 0rem 2rem 5rem 2rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.navbar_logo {
+  padding: 11px 14px;
+  font-size: 29px;
+  font-family: "Lobster", cursive;
+  color: #61663b;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.navbar_logo span {
+  font-size: 31px;
+}
+
+.navbar_menu {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  margin-right: 1vw;
+}
+
+.navbar_menu li {
+  list-style: none;
+  padding: 11px 15px;
+  text-align: center;
+  text-shadow: 1px 0.8px rgba(25, 42, 70, 0.2);
+}
+
+.navbar_menu li::after {
+  display: block;
+  width: 100px;
+  content: "";
+  border-bottom: solid 2px chocolate;
+  transform: scaleX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.navbar_menu li:hover::after {
+  transform: scaleX(1);
+}
+
+.navbar_login {
+  margin: 0;
+  padding: 11px 14px;
+  display: flex;
+}
+
+.navbar_login button {
+  background-color: white;
+  border: solid 1px #b3bc6d;
+  margin: 3px;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  width: 70px;
+  color: var(--text-color);
+}
+
+#login {
+  transition: all 1.5s;
+  cursor: pointer;
+}
+
+#signup {
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  cursor: pointer;
+}
+
+#login:hover {
+  background-color: #81884a94;
+  color: white;
+}
+#signup:hover {
+  background-color: #a0690b;
+}
+.menubtn {
+  display: none;
+}
+section {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+/*-----------------------------------------*/
+.hero {
+  height: 50vw;
+  background-image: url("hero/lily-banse--YHSwy6uqvk-unsplash.jpg");
+  background-size: cover;
+  background-color: rgba(245, 245, 245, 0.164);
+  z-index: 1;
+}
+
+.section_herobox {
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  top: 55%;
+  left: 50%;
+  width: 50vw;
+  height: 30vw;
+  background-color: rgba(247, 243, 243, 0.616);
+  z-index: 1;
+}
+.herobox_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section_hero_words {
+  text-align: center;
+  font-size: 3.5vw;
+  font-family: "Abril Fatface", cursive;
+  text-shadow: 1px 1px 1px gray;
+  padding-bottom: 4rem;
+}
+
+.hero_btn {
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3vw;
+  margin: 0 auto;
+  background-color: #c98106;
+  color: white;
+  padding: 1vw 2vw;
+  transition: all 0.4s;
+
+  box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
+}
+
+.hero_btn:hover {
+  background-color: #996204;
+  box-shadow: none;
+}
+/*-----------------------------------------*/
+
+.howitworks-maintitle {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Abril Fatface", cursive;
+  margin: 5rem 0rem;
+}
+
+.howitworks-container {
+  margin: 2rem;
+}
+
+.howitworks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.howitworks {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-gap: 3rem;
+  margin: 2rem;
+  margin-bottom: 4rem;
+}
+
+.material-icons {
+  font-size: 3rem;
+}
+.howitworks-img {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.howitworks-desc {
+  padding: 1rem;
+  text-align: center;
+  align-self: center;
+}
+
+.howitworks_title {
+  font-weight: bold;
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+.howitworks_subtitle {
+  font-size: 0.9rem;
+  color: #545e6f;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/*------------------------------------------*/
+.section-topmeal {
+  background-color: #eeeeee;
+  padding: 3rem 0rem 7rem 0rem;
+}
+
+.topmeal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2.7rem;
+  margin: 1rem 0rem 3rem 0rem;
+  font-weight: bold;
+  font-family: "Abril Fatface", cursive;
+}
+
+.topmeal-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 2rem 0 0 0;
+}
+.topmeal-mealtype-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+.topmeal-mealtype {
+  font-size: 1rem;
+  margin-left: 0.4rem;
+  font-weight: bold;
+  display: flex;
+}
+
+.mealtype-lunch,
+.mealtype-dinner {
+  padding: 0.4rem 1.5rem;
+  border: 2px solid rgb(97 102 59);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 1.5s;
+}
+
+.mealtype-lunch {
+  color: whitesmoke;
+  background-color: rgb(97 102 59);
+}
+.mealtype-dinner {
+  margin-left: 1vw;
+  color: rgb(97 102 59);
+}
+
+.mealtype-lunch:hover,
+.mealtype-dinner:hover {
+  color: whitesmoke;
+  background-color: rgb(97 102 59);
+}
+
+.mealtype-dinner:focus .mealtype-lunch {
+  color: rgb(97 102 59);
+  background-color: whitesmoke;
+}
+
+.slide-prev {
+  font-size: 2rem;
+  cursor: pointer;
+  color: rgb(47, 48, 89);
+}
+.slide-next {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #cfd8dc;
+}
+
+.slidePrev-hoverEffect:hover {
+  transition: transform 0.2s;
+  transform: translateX(-2px);
+}
+
+.slideNext-hoverEffect:hover {
+  transition: transform 0.2s;
+  transform: translateX(2px);
+}
+
+.meal-list {
+  display: flex;
+  list-style: none;
+  padding: 1rem 0;
+  overflow: unset;
+  margin: 0;
+  max-width: 95%;
+}
+
+.meal-card {
+  max-width: 290px;
+  min-width: 290px;
+  box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
+  border-radius: 8px;
+  margin: 0 10px;
+  transition: 0.5s;
+  background-color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.meal-card:hover {
+  box-shadow: 10px 10px 10px 0px rgba(25, 42, 70, 0.2);
+  transform: translate(0, -5px);
+}
+
+.meal-img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  height: 190px;
+}
+
+.meal-container {
+  margin: 0.5rem 1rem 1rem 1rem;
+  height: 133px;
+}
+
+.meal-name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meal-name {
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  max-width: 200px;
+}
+
+.meal-price {
+  font-size: 0.9rem;
+  color: #4d4d4d;
+}
+
+.meal-desc {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #545e6f;
+}
+
+.meal-bottom {
+  font-size: 0.7rem;
+  display: flex;
+  color: #545e6f;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.cookingmin,
+.meal-category {
+  padding: 0.2rem;
+}
+/*---------------------------------------------*/
+
+footer {
+  border-top: 1px solid #e4e4e4;
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+  position: relative;
+}
+.footer-container_1 {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.footer-list-1 {
+  list-style: none;
+  margin: 0.8rem 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem 6rem;
+  font-size: 0.8rem;
+}
+
+.stayconnected {
+  width: 55%;
+  padding-left: 7rem;
+  text-align: justify;
+  margin: 2.7rem auto 0 auto;
+}
+
+.stayconnected-title {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 0.1rem;
+  text-align: left;
+  font-family: "Lobster", cursive;
+}
+
+.stayconnected-desc {
+  width: 100%;
+  font-size: 0.6rem;
+  text-align: left;
+  padding: 0.1rem 0.2rem;
+  color: #545e6f;
+}
+
+.footer-subscription {
+  margin: 0.4 auto;
+  width: 100%;
+}
+
+.subsc {
+  padding: 0.5rem 2rem 0.5rem 0.3rem;
+  border-radius: 2px;
+  border: solid 1px rgb(150, 148, 148);
+}
+
+.submit {
+  padding: 0.5rem 0.4rem;
+  border-radius: 2px;
+  border: solid 1px rgb(150, 148, 148);
+}
+
+.footer-socialmedia {
+  display: flex;
+  justify-content: right;
+}
+.social {
+  font-size: 1.5rem;
+  padding: 0.6rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.footer-container-2 {
+  margin-top: 1rem;
+  border-top: solid 1px rgb(209, 209, 209);
+}
+
+.footer-container-2-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.footer-list-2 {
+  display: flex;
+  list-style: none;
+  font-size: 0.7rem;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+  color: #7c8492;
+}
+
+.footer-list-2 li {
+  padding: 0.8rem 0.5rem;
+}
+
+.footer-copyright {
+  margin: 1rem 0.5rem 0 0;
+  font-size: 0.6rem;
+  color: #9399a3;
+}
+
+.social:hover {
+  color: #e69206;
+  transform: scale(1.1);
+}
+
+.menubtn {
+  display: none;
+  position: absolute;
+  left: 12px;
+  top: 19px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#backtotop {
+  background-color: #61663b;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 20px;
+  z-index: 9999;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity, background-color;
+  transition-duration: 0.5s, 0.5s, 0.3s;
+  cursor: pointer;
+}
+
+#backtotop::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-size: 1.5rem;
+  color: whitesmoke;
+  line-height: 40px;
+}
+
+#backtotop:hover {
+  background-color: teal;
+}
+
+#backtotop.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*-----------------<OntheMenu.hbs>------------------------*/
+
+.section-onthemenu {
+  margin-top: 6rem;
+}
+
+.onthemenu-title-container {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: solid 1px rgb(209, 209, 209);
+}
+
+.onthemenu-mealtype {
+  width: 100%;
+  font-size: 4rem;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  margin: 4rem 0 1rem 0;
+  /* color: #61663b; */
+  color: #c98106;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.onthemenu-title {
+  font-size: 3rem;
+  font-family: "Abril Fatface", cursive;
+  padding: 0.5rem;
+}
+
+.onthemenu-subtitle {
+  font-size: 1.2rem;
+  color: #494949;
+}
+
+.onthemenu-meal-list {
+  display: grid;
+  grid-gap: 1rem;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+.onthemenu-meal-card {
+  max-width: 500px;
+  min-width: 500px;
+  border-radius: 5px;
+  transition: 0.5s;
+  background-color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  list-style: none;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.onthemenu-meal-card:hover {
+  box-shadow: 10px 10px 10px 0px rgba(25, 42, 70, 0.2);
+}
+
+.onthemenu-meal-img {
+  width: 100%;
+  border-radius: 1px 1px 0 0;
+  height: 340.243px;
+}
+
+.onthemenu-meal-container {
+  margin: 0.5rem 1rem 1rem 1rem;
+  height: 100px;
+}
+
+.onthemenu-meal-name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onthemenu-meal-name {
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  max-width: 200px;
+}
+
+.onthemenu-meal-price {
+  font-size: 0.9rem;
+  color: #4d4d4d;
+}
+
+.onthemenu-meal-desc {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #545e6f;
+}
+
+.onthemenu-meal-bottom {
+  font-size: 0.7rem;
+  display: flex;
+  color: #545e6f;
+  position: absolute;
+  bottom: 1rem;
+  right: 0.7rem;
+}
+
+.onthemenu-cookingmin,
+.onthemenu-meal-category {
+  padding: 0.2rem;
+}
+/*-----------------<login.hbs>------------------------*/
+
+.loginpage {
+  position: relative;
+  height: 100%;
+}
+
+.loginpage_img {
+  height: 700px;
+}
+
+.loginpage img {
+  margin-top: 5.3rem;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.formcontainer {
+  position: absolute;
+  top: 10rem;
+  right: 8rem;
+  width: 31vw;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(201, 201, 201);
+  box-shadow: 1px 1px 1px 0px rgba(33, 48, 71, 0.2);
+}
+
+.loginpage-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1vw;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+  font-family: "Abril Fatface", cursive;
+}
+
+.loginform {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  width: 25vw;
+  height: 230px;
+  margin: 0 auto;
+}
+
+.loginform input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  width: 90%;
+  height: 100%;
+  border-radius: 2px;
+  margin: 0.5rem auto;
+  border: none;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+.loginform button {
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  width: 90%;
+  border-radius: 5px;
+  margin: 1vw auto 2vw auto;
+  border: none;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+  box-shadow: 2px 2px 2px 0px rgba(25, 42, 70, 0.2);
+}
+
+.loginform input:focus {
+  background-color: rgb(243, 236, 236);
+}
+
+.loginform button:hover {
+  background-color: #c98209;
+}
+
+.noaccount {
+  width: 100%;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: all 0.5s;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+  padding: 1rem;
+}
+
+.noaccount:hover {
+  transform: translateY(2px);
+}
+/*-----------------<regist.hbs>------------------------*/
+
+.repage-img img {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.repage-img {
+  height: 800px;
+}
+
+.regpage {
+  position: relative;
+  height: 100%;
+}
+
+.regpage-formcontainer {
+  position: absolute;
+  top: 10rem;
+  right: 30rem;
+  width: 30vw;
+  margin: 0 auto;
+  padding: 1.3rem;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(201, 201, 201);
+  box-shadow: 1px 1px 1px 0px rgba(33, 48, 71, 0.2);
+}
+
+.regpage-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1vw;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+  font-family: "Abril Fatface", cursive;
+}
+
+.signinform {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  width: 25vw;
+
+  margin: 0 auto;
+}
+
+.signinform input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  width: 90%;
+  height: 100%;
+  border-radius: 2px;
+  margin: 0.5rem auto;
+  border: none;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+.signinform button {
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  width: 90%;
+  border-radius: 5px;
+  margin: 1vw auto 3.5vw auto;
+  border: none;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+  box-shadow: 2px 2px 2px 0px rgba(25, 42, 70, 0.2);
+}
+
+.signinform input:focus {
+  background-color: rgb(243, 236, 236);
+}
+
+.signinform button:hover {
+  background-color: #c98209;
+}
+/*-----------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 1200px) {
+  .inner {
+    max-width: 1100px;
+  }
+  .inner-howitworks {
+    max-width: 1400px;
+  }
+  .inner-onthemenu {
+    max-width: 1100px;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .howitworks_subtitle {
+    display: none;
+  }
+  .bars {
+    position: unset;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .navbar-background {
+    padding: 10px;
+    position: relative;
+    height: 100%;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+  }
+  .navbar_logo {
+    font-size: 26px;
+    margin-left: 3vw;
+  }
+  .navbar_menu {
+    flex-direction: column;
+    align-items: center;
+    width: 97%;
+    padding: 10px;
+    margin: 0 auto;
+    display: none;
+  }
+  .navbar_menu li::after {
+    display: none;
+  }
+  .menubtn {
+    display: block;
+  }
+
+  .navbar_menu li {
+    transition: all 1s;
+    width: 100%;
+    font-weight: bold;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+
+  .navbar_menu.active,
+  .navbar_login.active {
+    display: block;
+  }
+  .navbar_login {
+    align-self: flex-end;
+    padding: 0;
+    margin-bottom: 1rem;
+    display: none;
+  }
+
+  .navbar_menu li:hover {
+    background-color: #e6940694;
+    border-radius: 5px;
+  }
+
+  .section_herobox {
+    width: 500px;
+    height: 300px;
+    top: 13rem;
+  }
+  .section_hero_words {
+    font-size: 2rem;
+    padding: 1.6rem;
+  }
+  .hero_btn {
+    font-size: 2vw;
+    padding: 0.6rem;
+  }
+
+  .hero {
+    background-image: url(/7.jpg);
+    height: 450px;
+  }
+
+  .topmeal-title {
+    font-size: 1.6rem;
+  }
+
+  .inner,
+  .inner-howitworks {
+    padding: 0 1rem;
+  }
+
+  .slide-next,
+  .slide-prev {
+    font-size: 1.3rem;
+  }
+  .meal-card {
+    width: 120px;
+    min-width: 120px;
+    height: 150px;
+    position: relative;
+  }
+  .meal-img {
+    height: 80px;
+  }
+
+  .meal-price {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .meal-desc {
+    display: none;
+  }
+  .meal-name,
+  .meal-price {
+    font-size: 0.6em;
+  }
+
+  .meal-list {
+    width: 95%;
+  }
+
+  .mealtype-lunch,
+  .mealtype-dinner {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .howitworks-list {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .howitworks {
+    display: unset;
+  }
+
+  .howitworks-container {
+    margin: 1rem;
+  }
+
+  .howitworks-img-container {
+    align-content: center;
+  }
+
+  .howitworks-img {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .howitworks-maintitle {
+    font-size: 1.2rem;
+    margin: 3rem auto 0 auto;
+  }
+
+  .howitworks_title,
+  #addnext::after {
+    font-size: 1.3rem;
+  }
+
+  #remove {
+    display: none;
+  }
+
+  #addnext::after {
+    content: "Then our Chef will cook for you";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    padding: 1rem;
+  }
+
+  .footer-container_1 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .footer-list-1 {
+    grid-gap: 2vw 5vw;
+    width: 90%;
+    margin: 4vw 15vw 10vw 5vw;
+  }
+  .stayconnected {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+  .footer-subscription {
+    width: 350px;
+    margin: 0 auto;
+  }
+
+  .subsc {
+    padding-right: 20px;
+    padding-top: 4px;
+  }
+
+  .subsc {
+    vertical-align: middle;
+  }
+  .submit {
+    font-size: 0.63em;
+    vertical-align: middle;
+  }
+  .stayconnected-title,
+  .stayconnected-desc,
+  .footer-subscription,
+  .footer-socialmedia {
+    text-align: center;
+  }
+  .footer-socialmedia {
+    justify-content: center;
+  }
+  .footer-list-2 {
+    display: none;
+  }
+  .footer-container-2 {
+    text-align: center;
+  }
+  .footer-copyright {
+    width: 100%;
+  }
+  .loginpage_img,
+  .repage-img {
+    display: none;
+  }
+
+  .formcontainer {
+    position: unset;
+    margin: 3rem auto;
+    width: 70vw;
+  }
+
+  .regpage-formcontainer {
+    position: unset;
+    margin: 5rem auto 4rem auto;
+    width: 80%;
+    padding: 1rem;
+  }
+  .signinform {
+    width: 90%;
+    margin: 0 auto;
+    grid-gap: 0rem;
+  }
+
+  .signinform input {
+    height: 70%;
+  }
+
+  .signinform #submit {
+    margin: 1rem auto;
+  }
+  .loginform {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .onthemenu-meal-list {
+    display: block;
+  }
+
+  .stayconnected {
+    padding: 0.5rem;
+  }
+  .footer-subscription {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .section_herobox {
+    width: 280px;
+    height: 300px;
+    top: 13rem;
+  }
+  .section_hero_words {
+    font-size: 1.6rem;
+    padding: 1.4rem;
+  }
+  .hero_btn {
+    font-size: 2.8vw;
+    padding: 0.5rem;
+  }
+
+  .hero {
+    background-image: url(/7.jpg);
+    height: 450px;
+  }
+  .topmeal-title {
+    font-size: 1.3rem;
+  }
+  .howitworks-img {
+    width: 100%;
+  }
+  .howitworks-maintitle {
+    font-size: 1.2rem;
+    margin: 3rem auto 0 auto;
+  }
+  .howitworks_title,
+  #addnext::after {
+    font-size: 0.9rem;
+  }
+  .howitworks_subtitle {
+    display: none;
+  }
+  .formcontainer {
+    position: unset;
+    margin: 5rem auto;
+    width: 80vw;
+  }
+
+  .section-onthemenu {
+    margin-top: 4rem;
+  }
+  .onthemenu-title {
+    width: 100%;
+    font-size: 2rem;
+  }
+  .onthemenu-subtitle {
+    font-size: 1rem;
+  }
+
+  .onthemenu-mealtype {
+    font-size: 3rem;
+  }
+  .onthemenu-meal-list {
+    display: block;
+  }
+
+  .onthemenu-meal-card {
+    min-width: 100%;
+  }
+  .onthemenu-meal-card img {
+    width: 100%;
+    height: 90%;
+  }
+  .onthemenu-meal-container {
+    height: 170px;
+  }
+  .onthemenu-meal-name {
+    font-size: 1rem;
+  }
+  .onthemenu-meal-desc {
+    font-size: 0.7rem;
+  }
+  .footer-list-1 {
+    grid-gap: 2vw 11vw;
+    width: 90%;
+    margin: 4vw 15vw 10vw 5vw;
+  }
+}
