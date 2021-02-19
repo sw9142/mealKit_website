@@ -21,6 +21,8 @@ router.get("/menu", (req, res) => {
 router.get("/reg", (req, res) => {
   res.render("general/registration");
 });
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_APIKEY);
 
 router.post("/reg", (req, res) => {
   let isValidated = true;
@@ -59,10 +61,23 @@ router.post("/reg", (req, res) => {
 
   if (isValidated) {
     res.send("Success! :)");
-    const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey(
-      "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"
-    );
+
+    const megMail = {
+      to: "sw9142@gmail.com",
+      from: "schoi123@myseneca.ca",
+      subject: `Welcome ${fname}! :) `,
+      html: `Vistor's Full Name: ${fname} ${lname}<br>
+          Vistor's Email Address: ${email}<br>`,
+    };
+    sgMail
+      .send(megMail)
+      .then(() => {
+        res.send("Success");
+      })
+      .catch((err) => {
+        console.log(`Error ${err}`);
+        res.send("Error");
+      });
   } else {
     res.render("general/registration", {
       value: req.body,

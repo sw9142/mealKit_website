@@ -13,8 +13,10 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const app = express();
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config/keys.env" });
+const app = express();
 
 app.engine(
   ".hbs",
@@ -32,7 +34,7 @@ const generalControllers = require("./controllers/general");
 
 app.use("/", generalControllers);
 
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT;
 
 function onHttpStart() {
   console.log("Express http server listening on: " + HTTP_PORT);
