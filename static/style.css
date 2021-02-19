@@ -754,9 +754,8 @@ footer {
 
 .loginform {
   padding-top: 1rem;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  display: flex;
+  flex-direction: column;
   width: 25vw;
   height: 230px;
   margin: 0 auto;

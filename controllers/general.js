@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const menuList = require("../models/menuList");
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
+
 router.get("/", (req, res) => {
   res.render("general/home", {
     menu: menuList.topMealList(),
@@ -30,7 +27,6 @@ router.post("/reg", (req, res) => {
   let messageValidation = {};
   let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
   let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
-  console.log(req.body);
 
   const { fname, lname, email, password } = req.body;
 
@@ -63,6 +59,10 @@ router.post("/reg", (req, res) => {
 
   if (isValidated) {
     res.send("Success! :)");
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(
+      "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"
+    );
   } else {
     res.render("general/registration", {
       value: req.body,
@@ -76,7 +76,30 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  res.render("general/login");
+  let isValidated = true;
+  let messageValidation = {};
+  let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
+  let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
+
+  const { email, password } = req.body;
+
+  if (email.length === 0 || !regEpx_email.test(email)) {
+    isValidated = false;
+    messageValidation.email = "Please enter your email address correctly";
+  } else if (password.length === 0 || !regEpx_password.test(password)) {
+    isValidated = false;
+    messageValidation.password =
+      "Password must be more than 8 characters and contain at least one uppercase and one number digit";
+  }
+
+  if (isValidated) {
+    res.send("Success! :)");
+  } else {
+    res.render("general/login", {
+      value: req.body,
+      messageValidation: messageValidation,
+    });
+  }
 });
 
 module.exports = router;

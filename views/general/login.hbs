@@ -7,8 +7,14 @@
   <div class="loginpage-title">WELCOME</div>
 
   <form action="/login" method="post" class="loginform" >
-  <input id="email" type="email" name="email" placeholder="Email Address" autofocus> 
-  <input id="password" type="password" name="password" placeholder="Password">
+  <input id="email" type="email" name="email" placeholder="Email Address" autofocus  value="{{value.email}}"> 
+  {{#if messageValidation.email}}
+    <p id="validationMsg">{{messageValidation.email}}</p>
+  {{/if }}
+  <input id="password" type="password" name="password" placeholder="Password" value="{{value.password}}">
+  {{#if messageValidation.password}}
+    <p id="validationMsg">{{messageValidation.password}}</p>
+  {{/if }}
   <button id="submit" type="submit"  name="submit">LOG IN</button>
   </form>
 
