@@ -14,6 +14,7 @@ const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
+const bodyParser = require("body-parser");
 
 app.engine(
   ".hbs",
@@ -26,6 +27,7 @@ app.set("view engine", ".hbs");
 
 app.use(express.static("./static/"));
 
+app.use(bodyParser.urlencoded({ extended: false }));
 const generalControllers = require("./controllers/general");
 
 app.use("/", generalControllers);

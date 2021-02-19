@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const menuList = require("../models/menuList");
-
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(
+  "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"
+);
 router.get("/", (req, res) => {
   res.render("general/home", {
     menu: menuList.topMealList(),
