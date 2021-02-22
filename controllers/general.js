@@ -111,7 +111,9 @@ router.post("/login", (req, res) => {
   }
 
   if (isValidated) {
-    res.send("Success! :)");
+    res.render("general/welcome", {
+      value: req.body,
+    });
   } else {
     res.render("general/login", {
       value: req.body,
