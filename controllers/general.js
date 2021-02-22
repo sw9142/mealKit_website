@@ -63,15 +63,14 @@ router.post("/reg", (req, res) => {
   }
 
   if (isValidated) {
-    res.render("general/welcome", {
-      value: req.body,
-    });
+    res.redirect("/welcome");
 
     const megMail = {
       to: "sw9142@gmail.com",
       from: "schoi123@myseneca.ca",
       subject: `Welcome ${fname}! :) `,
-      html: ` Welcome to join ComfortFood :) 
+      html: ` Hey I am Sewon Choi! nice to meet you! <br>
+        Welcome to join ComfortMeal :)  <br>
        Vistor's Full Name: ${fname} ${lname}<br>
           Vistor's Email Address: ${email}<br>`,
     };

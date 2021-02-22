@@ -919,16 +919,23 @@ footer {
   margin: 1rem;
   padding: 1rem;
   top: 3rem;
+  left: 3rem;
   z-index: 3;
 }
 
 .welcomepage_hiyou {
   padding-top: 3rem;
-  font-size: 2rem;
+  font-size: 3.5rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
 }
 
-.welcomepage-name {
+#comfortmeal {
+  font-size: 4rem;
+}
+
+.welcomepage_welcome {
   font-size: 2.5rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
 }
 /*-----------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 1200px) {
@@ -1215,6 +1222,12 @@ footer {
     width: 100%;
     margin: 0 auto;
   }
+  .welcomepage-message {
+    left: 0;
+  }
+  #comfortmeal {
+    font-size: 4rem;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1297,5 +1310,28 @@ footer {
     grid-gap: 2vw 11vw;
     width: 90%;
     margin: 4vw 15vw 10vw 5vw;
+  }
+
+  .welcomepage-message {
+    left: 0;
+    padding: 0;
+    top: 5rem;
+  }
+
+  .welcomepage_hiyou {
+    padding: 0.4rem;
+    padding-top: 1.5rem;
+    font-size: 2rem;
+    margin: 0;
+    z-index: 2;
+  }
+
+  #comfortmeal {
+    font-size: 2rem;
+  }
+  .welcomepage_welcome {
+    font-size: 1rem;
+    padding: 0.4rem;
+    z-index: 2;
   }
 }
