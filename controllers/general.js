@@ -18,6 +18,9 @@ router.get("/menu", (req, res) => {
   });
 });
 
+router.get("/welcome", (req, res) => {
+  res.render("general/welcome");
+});
 router.get("/reg", (req, res) => {
   res.render("general/registration");
 });
@@ -28,7 +31,7 @@ router.post("/reg", (req, res) => {
   let isValidated = true;
   let messageValidation = {};
   let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
-  let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
+  let regEpx_password = /^(?=.{6,12}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/g; //https://riptutorial.com/regex/example/18996/a-password-containing-at-least-1-uppercase--1-lowercase--1-digit--1-special-character-and-have-a-length-of-at-least-of-10
 
   const { fname, lname, email, password } = req.body;
 
@@ -56,17 +59,20 @@ router.post("/reg", (req, res) => {
   } else if (!regEpx_password.test(password)) {
     isValidated = false;
     messageValidation.password =
-      "Password must be more than 8 characters and contain at least one uppercase and one number digit";
+      "Password must be between 6 to 12 characters and contains at least one lowercase letter, uppercase letter, number and symbol.";
   }
 
   if (isValidated) {
-    res.send("Success! :)");
+    res.render("general/welcome", {
+      value: req.body,
+    });
 
     const megMail = {
       to: "sw9142@gmail.com",
       from: "schoi123@myseneca.ca",
       subject: `Welcome ${fname}! :) `,
-      html: `Vistor's Full Name: ${fname} ${lname}<br>
+      html: ` Welcome to join ComfortFood :) 
+       Vistor's Full Name: ${fname} ${lname}<br>
           Vistor's Email Address: ${email}<br>`,
     };
     sgMail
@@ -93,15 +99,13 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   let isValidated = true;
   let messageValidation = {};
-  let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
-  let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
 
   const { email, password } = req.body;
 
-  if (email.length === 0 || !regEpx_email.test(email)) {
+  if (email.length === 0) {
     isValidated = false;
     messageValidation.email = "Please enter your email address correctly";
-  } else if (password.length === 0 || !regEpx_password.test(password)) {
+  } else if (password.length === 0) {
     isValidated = false;
     messageValidation.password =
       "Password must be more than 8 characters and contain at least one uppercase and one number digit";
