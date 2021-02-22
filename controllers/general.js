@@ -104,11 +104,10 @@ router.post("/login", (req, res) => {
 
   if (email.length === 0) {
     isValidated = false;
-    messageValidation.email = "Please enter your email address correctly";
+    messageValidation.email = "Please enter a valid email address";
   } else if (password.length === 0) {
     isValidated = false;
-    messageValidation.password =
-      "Password must be more than 8 characters and contain at least one uppercase and one number digit";
+    messageValidation.password = "Please enter your password";
   }
 
   if (isValidated) {

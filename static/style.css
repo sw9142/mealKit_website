@@ -894,6 +894,42 @@ footer {
 .signinform button:hover {
   background-color: #c98209;
 }
+
+/*-----------------<welcome.hbs>------------------------*/
+
+.welcomepage {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.welcomepage-img {
+  width: 100%;
+  height: 100%;
+}
+.welcomepage img {
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+
+.welcomepage-message {
+  position: absolute;
+  margin: 1rem;
+  padding: 1rem;
+  top: 3rem;
+  z-index: 3;
+}
+
+.welcomepage_hiyou {
+  padding-top: 3rem;
+  font-size: 2rem;
+}
+
+.welcomepage-name {
+  font-size: 2.5rem;
+}
 /*-----------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 1200px) {
   .inner {
