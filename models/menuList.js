@@ -11,6 +11,7 @@ const mealList = [
     calories: "1000",
     imageURL: "/meals/meatballs.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Avocado&Egg Sandwich",
@@ -23,6 +24,7 @@ const mealList = [
     calories: "890",
     imageURL: "/meals/avocadoeggsandwich.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Homemade Whole Wheat Pasta",
@@ -35,6 +37,7 @@ const mealList = [
     calories: "900",
     imageURL: "/meals/pasta.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "The Classic Burger",
@@ -48,6 +51,7 @@ const mealList = [
     calories: "1200",
     imageURL: "/meals/burger.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "New York Strip Steak",
@@ -62,6 +66,7 @@ const mealList = [
     calories: "1100",
     imageURL: "/meals/steak.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Garden Salad Bowl",
@@ -74,7 +79,8 @@ const mealList = [
     serving: "1",
     calories: "500",
     imageURL: "/meals/bowl.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "dinner",
   },
   {
     title: "The Classic Burger",
@@ -87,7 +93,8 @@ const mealList = [
     serving: "2",
     calories: "1200",
     imageURL: "/meals/burger.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Green Crunch Roll",
@@ -100,7 +107,8 @@ const mealList = [
     serving: "2",
     calories: "700",
     imageURL: "/meals/sushi.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "English Apple Pie",
@@ -112,7 +120,8 @@ const mealList = [
     serving: "2",
     calories: "700",
     imageURL: "/meals/applePie.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Salmon Teriyaki",
@@ -124,7 +133,8 @@ const mealList = [
     serving: "2",
     calories: "800",
     imageURL: "/meals/salmon.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Grilled Lemon Chicken",
@@ -136,7 +146,8 @@ const mealList = [
     serving: "2",
     calories: "800",
     imageURL: "/meals/chicken.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Roast Pumpkin, Spinach and Seeds Salad ",
@@ -150,7 +161,8 @@ const mealList = [
     serving: "2",
     calories: "700",
     imageURL: "/meals/pumpkin.jpg",
-    topMeal: false,
+    topMeal: true,
+    time: "lunch",
   },
 ];
 
@@ -168,11 +180,22 @@ module.exports.classicMeals = function (string) {
   return classicMeals;
 };
 
-module.exports.topMealList = function () {
+module.exports.topMealListLunch = function () {
   var topMeals = [];
 
   for (var i = 0; i < mealList.length; i++) {
-    if (mealList[i].topMeal) {
+    if (mealList[i].topMeal && mealList[i].time === "lunch") {
+      topMeals.push(mealList[i]);
+    }
+  }
+  return topMeals;
+};
+
+module.exports.topMealListDinner = function () {
+  var topMeals = [];
+
+  for (var i = 0; i < mealList.length; i++) {
+    if (mealList[i].topMeal && mealList[i].time === "dinner") {
       topMeals.push(mealList[i]);
     }
   }

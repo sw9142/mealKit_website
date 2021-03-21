@@ -1,16 +1,37 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(10);
+const hash = bcrypt.hashSync("B4c0//", salt);
 const router = express.Router();
 const menuList = require("../models/menuList");
 
+/*
+
+Name: Sewon Choi Student ID: 123717209 Course: NDD
+GitHub Repository: https://github.com/sw9142/mealKit_website 
+Heroku URL: https://comfortmeal.herokuapp.com/
+*/
+
+mongoose.connect(
+  "mongodb+srv://schoi123:schoi123@myseneca.ca@web322cluster.v5jww.mongodb.net/mealkit322?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
+
 router.get("/", (req, res) => {
   res.render("general/home", {
-    menu: menuList.topMealList(),
+    menuLunch: menuList.topMealListLunch(),
+    menuDinner: menuList.topMealListDinner(),
   });
 });
 
 router.get("/menu", (req, res) => {
   res.render("general/menu", {
-    menu: menuList.topMealList(),
+    menu: menuList.topMealListLunch(),
     category_cm: menuList.classicMeals("Classic Meals")[0].category,
     category_km: menuList.classicMeals("Kid-Friendly Meals")[0].category,
     classicMeals: menuList.classicMeals("Classic Meals"),
@@ -21,11 +42,26 @@ router.get("/menu", (req, res) => {
 router.get("/welcome", (req, res) => {
   res.render("general/welcome");
 });
+
 router.get("/reg", (req, res) => {
   res.render("general/registration");
 });
+
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_APIKEY);
+
+const Schema = mongoose.Schema;
+const registSchema = new Schema({
+  fname: String,
+  lname: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: String,
+});
+
+const registModel = mongoose.model("registModel", registSchema);
 
 router.post("/reg", (req, res) => {
   let isValidated = true;
@@ -63,26 +99,45 @@ router.post("/reg", (req, res) => {
   }
 
   if (isValidated) {
-    res.redirect("/welcome");
+    var newRegist = new registModel({
+      fname: fname,
+      lname: lname,
+      email: email,
+      password: password,
+    });
 
-    const megMail = {
-      to: "sw9142@gmail.com",
-      from: "schoi123@myseneca.ca",
-      subject: `Welcome ${fname}! :) `,
-      html: ` Hey I am Sewon Choi! nice to meet you! <br>
-        Welcome to join ComfortMeal :)  <br>
-       Vistor's Full Name: ${fname} ${lname}<br>
-          Vistor's Email Address: ${email}<br>`,
-    };
-    sgMail
-      .send(megMail)
-      .then(() => {
-        res.send("Success");
-      })
-      .catch((err) => {
-        console.log(`Error ${err}`);
-        res.send("Error");
-      });
+    newRegist.save((err) => {
+      if (err) {
+        console.log("Couldn't create the new name:" + err);
+      } else {
+        console.log(
+          "Successfully created a new name: " +
+            newRegist.fname +
+            " " +
+            newRegist.lname
+        );
+      }
+      res.redirect("/welcome");
+    });
+
+    // const megMail = {
+    //   to: email,
+    //   from: "schoi123@myseneca.ca",
+    //   subject: `Welcome ${fname}! :) `,
+    //   html: ` Hey I am Sewon Choi! nice to meet you! <br>
+    //     Welcome to join ComfortMeal :)  <br>
+    //    Vistor's Full Name: ${fname} ${lname}<br>
+    //       Vistor's Email Address: ${email}<br>`,
+    // };
+    // sgMail
+    //   .send(megMail)
+    //   .then(() => {
+    //     res.send("Success");
+    //   })
+    //   .catch((err) => {
+    //     console.log(`Error ${err}`);
+    //     res.send("Error");
+    //   });
   } else {
     res.render("general/registration", {
       value: req.body,
@@ -110,9 +165,25 @@ router.post("/login", (req, res) => {
   }
 
   if (isValidated) {
-    res.render("general/welcome", {
-      value: req.body,
-    });
+    let authenticated = false;
+    let messageValidation = {};
+    registModel
+      .findOne({ email: email, password: password })
+      .exec()
+      .then((data) => {
+        if (!data) {
+          console.log("no account for " + email);
+          messageValidation.login =
+            "Sorry, you entered an invalid email and/or password";
+          res.render("general/login", {
+            value: req.body,
+            messageValidation: messageValidation,
+          });
+        } else {
+          console.log("we have found the account for " + email);
+          res.render("general/welcome");
+        }
+      });
   } else {
     res.render("general/login", {
       value: req.body,

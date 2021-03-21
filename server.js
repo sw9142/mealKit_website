@@ -30,6 +30,7 @@ app.set("view engine", ".hbs");
 app.use(express.static("./static/"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
 const generalControllers = require("./controllers/general");
 
 app.use("/", generalControllers);

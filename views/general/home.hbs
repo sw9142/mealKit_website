@@ -68,10 +68,16 @@
               </div>
             </div>
           </div>
-            <ul class="meal-list" data-position="0">
-                  {{#each menu}}
+            <ul class="meal-list" data-position="0" id="lunch">
+                  {{#each menuLunch}}
                     {{>mealCard this}}
                   {{/each}}
-            </ul>        
+            </ul>   
+
+              <ul class="meal-list hidden" data-position="0" id="dinner" >
+                  {{#each menuDinner}}
+                    {{>mealCard this}}
+                  {{/each}}
+             </ul>       
         </div>
       </section>

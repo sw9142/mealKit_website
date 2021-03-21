@@ -141,6 +141,7 @@ a {
 .navbar_login {
   margin: 0;
   padding: 11px 14px;
+
   display: flex;
 }
 
@@ -341,7 +342,7 @@ section {
   margin-left: 1vw;
   color: rgb(97 102 59);
 }
-
+/* 
 .mealtype-lunch:hover,
 .mealtype-dinner:hover {
   color: whitesmoke;
@@ -350,8 +351,8 @@ section {
 
 .mealtype-dinner:focus .mealtype-lunch {
   color: rgb(97 102 59);
-  background-color: whitesmoke;
-}
+  background-color: #f5f5f5;
+} */
 
 .slide-prev {
   font-size: 2rem;
@@ -381,6 +382,10 @@ section {
   overflow: unset;
   margin: 0;
   max-width: 95%;
+}
+
+.hidden {
+  display: none;
 }
 
 .meal-card {
@@ -776,7 +781,7 @@ footer {
   font-size: 1.1rem;
   width: 90%;
   border-radius: 5px;
-  margin: 1vw auto 2vw auto;
+  margin: 1vw auto 1vw auto;
   border: none;
   background-color: #e69206;
   transition: all 1s;
@@ -794,6 +799,19 @@ footer {
   background-color: #c98209;
 }
 
+.authenticationwrapper {
+  width: 100%;
+  display: flex;
+  font-size: 0.6rem;
+  align-items: center;
+}
+
+.authenticationwrapper input {
+  width: unset;
+  height: unset;
+  margin: 0.5rem;
+}
+
 .noaccount {
   width: 100%;
   text-align: right;
@@ -802,10 +820,18 @@ footer {
   transition: all 0.5s;
   text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
   padding: 1rem;
+  margin-top: 0.5rem;
 }
 
 .noaccount:hover {
   transform: translateY(2px);
+}
+
+#msglogin {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-left: 1.4rem;
 }
 /*-----------------<regist.hbs>------------------------*/
 

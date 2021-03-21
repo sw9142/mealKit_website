@@ -33,25 +33,77 @@ icons.addEventListener("click", () => {
 let slidePrev = document.querySelector(".slide-prev");
 let slideNext = document.querySelector(".slide-next");
 slidePrev.classList.add("slidePrev-hoverEffect");
-function slideEvent() {
-  const mealList =
-    slidePrev.parentElement.parentElement.parentElement.nextElementSibling;
-  const liList = mealList.getElementsByTagName("li");
-  let position = mealList.getAttribute("data-position");
+const mealList = document.querySelectorAll(".meal-list");
 
-  if (mealList.clientWidth < liList.length * 310 + Number(position)) {
-    position = Number(position) - 310;
+function slideRightEvent(e) {
+  for (let i = 0; i < mealList.length; i++) {
+    let slideNext = e.target;
+    let position = mealList[i].getAttribute("data-position");
 
-    if (mealList.clientWidth > liList.length * 310 + Number(position)) {
-      slidePrev.style.color = "#cfd8dc";
-      slidePrev.classList.remove("slidePrev-hoverEffect");
+    if (position < 0) {
+      position = Number(position) + 310;
+      slidePrev.style.color = "rgb(47, 48, 89)";
+      slidePrev.classList.add("slidePrev-hoverEffect");
+      slidePrev.addEventListener("click", slideLeftEvent);
+      if (position === 0) {
+        slideNext.style.color = "#cfd8dc";
+        slideNext.classList.remove("slideNext-hoverEffect");
+        slideNext.removeEventListener("click", slideRightEvent);
+      }
     }
-    slideNext.style.color = "rgb(47, 48, 89)";
-    slideNext.classList.add("slideNext-hoverEffect");
+
+    mealList[i].style.transition = "transform 0.5s";
+    mealList[i].style.transform = "translateX(" + String(position) + "px)";
+    mealList[i].setAttribute("data-position", position);
   }
-  mealList.style.transition = "transform 0.5s";
-  mealList.style.transform = "translateX(" + String(position) + "px)";
-  mealList.setAttribute("data-position", position);
 }
 
-slidePrev.addEventListener("click", slideEvent);
+function slideLeftEvent() {
+  for (let i = 0; i < mealList.length; i++) {
+    const liList = mealList[i].getElementsByTagName("li");
+    let position = mealList[i].getAttribute("data-position");
+
+    if (mealList[i].clientWidth < liList.length * 310 + Number(position)) {
+      position = Number(position) - 310;
+
+      if (mealList[i].clientWidth > liList.length * 310 + Number(position)) {
+        slidePrev.style.color = "#cfd8dc";
+        slidePrev.classList.remove("slidePrev-hoverEffect");
+        slidePrev.removeEventListener("click", slideLeftEvent);
+      }
+      slideNext.style.color = "rgb(47, 48, 89)";
+      slideNext.classList.add("slideNext-hoverEffect");
+      slideNext.addEventListener("click", slideRightEvent);
+    }
+    mealList[i].style.transition = "transform 0.5s";
+    mealList[i].style.transform = "translateX(" + String(position) + "px)";
+    mealList[i].setAttribute("data-position", position);
+  }
+}
+
+slidePrev.addEventListener("click", slideLeftEvent);
+
+/*----------------------------------------------------- */
+
+let dinnerBtn = document.querySelector(".mealtype-dinner");
+let lunchBtn = document.querySelector(".mealtype-lunch");
+let dinnerList = document.querySelector("#dinner");
+let lunchList = document.querySelector("#lunch");
+
+dinnerBtn.addEventListener("click", () => {
+  lunchBtn.style.backgroundColor = "rgb(245, 245, 245)";
+  lunchBtn.style.color = "rgb(97 102 59)";
+  dinnerBtn.style.backgroundColor = "rgb(97 102 59)";
+  dinnerBtn.style.color = "rgb(245, 245, 245)";
+  dinnerList.classList.remove("hidden");
+  lunchList.classList.add("hidden");
+});
+
+lunchBtn.addEventListener("click", () => {
+  dinnerBtn.style.backgroundColor = "rgb(245, 245, 245)";
+  dinnerBtn.style.color = "rgb(97 102 59)";
+  lunchBtn.style.backgroundColor = "rgb(97 102 59)";
+  lunchBtn.style.color = "rgb(245, 245, 245)";
+  lunchList.classList.remove("hidden");
+  dinnerList.classList.add("hidden");
+});
