@@ -155,10 +155,21 @@ a {
   width: 70px;
   color: var(--text-color);
 }
-
+.loginuser {
+  font-size: 0.8rem;
+  width: 100%;
+  text-align: right;
+}
 #login {
   transition: all 1.5s;
   cursor: pointer;
+}
+
+#logout {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  color: white;
 }
 
 #signup {
@@ -799,19 +810,23 @@ footer {
   background-color: #c98209;
 }
 
-.authenticationwrapper {
+.logintypes {
   width: 100%;
   display: flex;
   font-size: 0.6rem;
   align-items: center;
 }
 
-.authenticationwrapper input {
+#customer,
+#dataentry {
   width: unset;
   height: unset;
+  padding: 1rem;
   margin: 0.5rem;
 }
-
+.logintypes label {
+  padding-right: 1rem;
+}
 .noaccount {
   width: 100%;
   text-align: right;
@@ -833,6 +848,14 @@ footer {
   font-size: 0.8rem;
   margin-left: 1.4rem;
 }
+
+#errlogin {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
 /*-----------------<regist.hbs>------------------------*/
 
 .repage-img img {
@@ -1360,4 +1383,17 @@ footer {
     padding: 0.4rem;
     z-index: 2;
   }
+}
+/*-----------customer-------------*/
+
+.customerDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
+}
+
+.dataentryDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
 }

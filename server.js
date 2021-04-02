@@ -15,6 +15,8 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const session = require("express-session");
 dotenv.config({ path: "./config/keys.env" });
 const app = express();
 
@@ -27,13 +29,38 @@ app.engine(
 );
 app.set("view engine", ".hbs");
 
+// Set up express-session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use((req, res, next) => {
+  // res.locals.user is a global handlebars variable.
+  // This means that ever single handlebars file can access that user variable
+  res.locals.user = req.session.user;
+
+  next();
+});
+
 app.use(express.static("./static/"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+mongoose.connect(process.env.MONGOOSE_APIKEY, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
+
 const generalControllers = require("./controllers/general");
+const userControllers = require("./controllers/user");
 
 app.use("/", generalControllers);
+app.use("/user", userControllers);
 
 const HTTP_PORT = process.env.PORT;
 
