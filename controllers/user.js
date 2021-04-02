@@ -17,8 +17,6 @@ router.post("/reg", (req, res) => {
   let regEpx_password = /^(?=.{6,12}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/g; //https://riptutorial.com/regex/example/18996/a-password-containing-at-least-1-uppercase--1-lowercase--1-digit--1-special-character-and-have-a-length-of-at-least-of-10
 
   const { fname, lname, email, password, logintype } = req.body;
-  console.log(req.body);
-  console.log("isDataentry?: " + logintype);
 
   if (typeof fname !== "string" || fname.length === 0) {
     isValidated = false;
@@ -54,9 +52,7 @@ router.post("/reg", (req, res) => {
       email: email,
       password: password,
     });
-    if (logintype === "dataentry") {
-      user.isDataEntry = true;
-    }
+
     user
       .save()
       .then((userSaved) => {
@@ -64,6 +60,7 @@ router.post("/reg", (req, res) => {
       })
       .catch((err) => {
         console.log(`Error adding user to the database.  ${err}`);
+        res.redirect("user/registration");
       });
 
     const megMail = {
@@ -86,11 +83,8 @@ router.post("/reg", (req, res) => {
       });
 
     req.session.user = user;
-    if (logintype === "dataentry") {
-      res.redirect("/dataentry");
-    } else {
-      res.redirect("/customer");
-    }
+
+    res.redirect("/welcome");
   } else {
     res.render("user/registration", {
       value: req.body,
@@ -129,19 +123,35 @@ router.post("/login", (req, res) => {
       })
       .then((user) => {
         if (user) {
-          console.log("user: " + user);
           bcrypt
             .compare(password, user.password)
             .then((isMatched) => {
               if (isMatched) {
-                req.session.user = user;
-                console.log("req.session.user: " + req.session.user);
-
                 if (logintype === "dataentry") {
-                  console.log("dataentry you are here!");
-                  res.redirect("/dataentry");
+                  userModel
+                    .updateOne(
+                      { email: req.body.email },
+                      { $set: { isDataEntry: true } }
+                    )
+                    .exec()
+                    .then(() => {
+                      req.session.user = user;
+                      req.session.user.isDataEntry = true;
+
+                      res.redirect("/dataentry");
+                    });
                 } else {
-                  res.redirect("/customer");
+                  userModel
+                    .updateOne(
+                      { email: req.body.email },
+                      { $set: { isDataEntry: true } }
+                    )
+                    .exec()
+                    .then(() => {
+                      req.session.user = user;
+                      req.session.user.isDataEntry = false;
+                      res.redirect("/customer");
+                    });
                 }
               } else {
                 errors.push(`The password is wrong.`);
