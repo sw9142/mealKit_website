@@ -17,6 +17,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 dotenv.config({ path: "./config/keys.env" });
 const app = express();
 
@@ -49,6 +50,8 @@ app.use((req, res, next) => {
 app.use(express.static("./static/"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(fileUpload());
 
 mongoose.connect(process.env.MONGOOSE_APIKEY, {
   useNewUrlParser: true,

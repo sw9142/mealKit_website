@@ -986,7 +986,146 @@ footer {
   font-size: 2.5rem;
   text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
 }
+
+/*-----------customer-------------*/
+
+.customerDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
+}
+
+.dataentryDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
+}
+
+/*---------------menu_edit.hbs--------------*/
+.addNewMeal {
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
+  height: 100%;
+}
+
+.addNewMeal form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 1rem;
+  width: 45vw;
+  margin: 0 auto;
+  color: rgb(117 117 117);
+}
+
+.addNewMeal form input,
+.addNewMeal form select,
+.addNewMeal form select option {
+  padding: 0.6rem;
+  font-size: 1rem;
+  width: 90%;
+  border-radius: 2px;
+  margin: 0.5rem auto;
+  color: rgb(117 117 117);
+  border: none;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+.addNewMeal form label {
+  padding: 0.3rem 1.9rem;
+}
+
+#imageURL,
+.addNewMeal form label {
+  grid-column: span 2;
+}
+
+.addNewMeal form button {
+  grid-column: 2/3;
+  border: unset;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  cursor: pointer;
+  justify-self: end;
+  margin: 0.5rem 2rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  text-align: center;
+}
+/*------------------update Meals------------------------*/
+.updateMeal {
+  width: 100%;
+  margin: 1rem;
+  padding: 2rem;
+  height: 100%;
+}
+.updateMeal form {
+  width: 50rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  padding-top: 1rem;
+  margin: 0 auto;
+
+  border: 1px solid rgb(202, 202, 202);
+}
+
+.updateMeal form label,
+.updateMeal form input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  color: rgb(117 117 117);
+  margin: 0.5rem auto;
+  border: none;
+}
+.updateMeal form label {
+  color: black;
+}
+#imageURL {
+  grid-column: 1;
+}
+.updateMeal form .imageURL {
+  grid-column: 3/5;
+}
+
+.updateMeal form .buttons {
+  grid-column: 4/5;
+  display: flex;
+  justify-self: end;
+  margin: 1rem;
+}
+
+.updateMeal form button {
+  border: unset;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  cursor: pointer;
+  margin: 0.5rem;
+  width: 5rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  text-align: center;
+}
+
+.allmenuwapper {
+  width: 100%;
+  margin: 0 auto;
+}
+.button_allMenu {
+  border: unset;
+  background-color: rgb(97, 102, 59);
+  transition: all 1s;
+  width: 10rem;
+  height: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
 /*-----------------------------------------------------------------------------------------*/
+
 @media only screen and (min-width: 1200px) {
   .inner {
     max-width: 1100px;
@@ -1383,17 +1522,4 @@ footer {
     padding: 0.4rem;
     z-index: 2;
   }
-}
-/*-----------customer-------------*/
-
-.customerDash {
-  font-size: 1rem;
-  color: #61663b;
-  margin: 1rem;
-}
-
-.dataentryDash {
-  font-size: 1rem;
-  color: #61663b;
-  margin: 1rem;
 }

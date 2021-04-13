@@ -30,6 +30,16 @@ icons.addEventListener("click", () => {
 
 /*----------------------------------------------------- */
 
+const mealCards = document.querySelectorAll(".onthemenu-meal-card");
+
+for (const meal of mealCards) {
+  meal.addEventListener("click", (e) => {
+    console.log("e?", e);
+    console.log("target?", e.target);
+  });
+}
+
+/*----------------------------------------------------- */
 let slidePrev = document.querySelector(".slide-prev");
 let slideNext = document.querySelector(".slide-next");
 slidePrev.classList.add("slidePrev-hoverEffect");
@@ -107,3 +117,5 @@ lunchBtn.addEventListener("click", () => {
   lunchList.classList.remove("hidden");
   dinnerList.classList.add("hidden");
 });
+
+/*----------------------------------------------------- */

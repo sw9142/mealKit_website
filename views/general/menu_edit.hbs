@@ -1,0 +1,86 @@
+ <section class="section-onthemenu">
+    <div class="inner-onthemenu">
+            <div class="onthemenu-title-container">
+                <div class="onthemenu-title">    Date Entry Page</div>
+                <div class="onthemenu-subtitle">{{msg}} </div>
+            </div>
+            <div class="onthemenu-mealtype">
+            </div>
+
+     
+
+            <div class="addNewMeal">
+                <div class="onthemenu-mealtype">Add New Meal</div>
+                <form method="post" action="/menu_edit" enctype="multipart/form-data">
+                
+                    <input type="text" name="title" id="title" placeholder="Title"> 
+                    <input type="text" name="included" id="included" placeholder="Included"> 
+                    <input type="text" name="desc" id="desc" placeholder="Description"> 
+                    {{!-- <input type="" name="category" id="category" placeholder="Category"> --}}
+                    <select name="category" id="category" > 
+                    <option>Classic Meals</option>
+                    <option>Kid Meals</option>
+                    </select>
+                    <input type="text" name="price" id="price" placeholder="Price ($50)"> 
+                    <input type="text" name="cookingTime" id="cookingTime" placeholder="CookingTime (25mins)"> 
+                    <input type="text" name="serving" id="serving" placeholder="Serving (1 or 2)" > 
+                    <input type="text" name="calories" id="calories" placeholder="Calories"> 
+                    <select type="text" name="topMeal" id="topMeal" placeholder="TopMeal (true or false)">
+                      <option>TopMeal: true</option>
+                      <option>TopMeal: false</option>
+                          </select>
+                    <select type="text" name="time" id="time" placeholder="Time (lunch or dinner)">
+                        <option>lunch</option>
+                       <option>dinner</option>
+                           </select>
+                    <label>Meal Image</label>
+                    <input type="file" name="imageURL" id="imageURL" placeholder="Picture"> 
+                    <button type="submit" class="addSubmit" >Add Meal</button>
+
+                 </form>  
+
+            </div>
+
+            <div class="updateMeal">
+                    <div class="onthemenu-mealtype">Update Meal</div>
+                    <br>
+                {{#each data}}
+                    
+                    <form method="post"  enctype="multipart/form-data">
+                
+                        <label>  Title </label> 
+                        <input type="text" name="title" value="{{title}}" readonly />
+                        <label>  Included </label>       
+                        <input type="text" name="included" value="{{included}}" />
+                        <label>  Description </label>      
+                        <input type="text" name="desc" value="{{desc}}" />
+                        <label>  Category </label>      
+                        <input type="text" name="category" value="{{category}}" />
+                        <label>  Price </label>     
+                        <input type="text" name="price" value="{{price}}" />
+                        <label>  Cooking Time </label>      
+                        <input type="text" name="cookingTime" value="{{cookingTime}}" />
+                        <label>  Serving </label>        
+                        <input type="text" name="serving" value="{{serving}}" />
+                        <label>  Calories </label>       
+                        <input type="text" name="calories" value="{{calories}}" />
+                        <label>  TopMeal </label>       
+                        <input type="text" name="topMeal" value="{{topMeal}}" />
+                        <label>  Time </label>       
+                        <input type="text" name="time" value="{{time}}" />
+                        <label id="imageURL">  imageURL </label>       
+                        <img  src="/meals/{{imageURL}}" style="width: 100px; heigh: 50px;" >
+                        <input type="file" name="imageURL" class="imageURL"value="{{imageURL}}" />
+                        <div class="buttons">
+                             <button type="submit" id="updatebtn" formaction="/menu_edit_update">Update</button>
+                              <button type="submit" id="deletebtn" formaction="/menu_edit_delete">Delete</button>
+                        </div>
+                    </form>           
+                    <br>             
+                        {{/each}}
+            </div>
+        <div class="allmenuwapper">
+        <a href="/menu#allMenu" ><button type="button" class="button_allMenu">Go to see All Menu</button></a>
+        </div>
+   </div>
+</section>
