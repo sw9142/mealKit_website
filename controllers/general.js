@@ -188,45 +188,46 @@ router.post("/menu_edit_update", (req, res) => {
           calories: req.body.calories,
           topMeal: req.body.topMeal,
           time: req.body.time,
-          imageURL: req.body.imageURL,
         },
       }
     )
     .exec()
     .then(() => {
       console.log("Successfully updated meal: " + req.body.title);
-      if (req.body.imageURL) {
-        req.files.imageURL.name = `pro_pic_${req.body.title}${
-          path.parse(req.files.imageURL.name).ext
-        }`;
+      // if (req.files.imageURL) {
+      //   console.log("coming here??");
+      //   req.files.imageURL.name = `pro_pic_${req.body.title}${
+      //     path.parse(req.files.imageURL.name).ext
+      //   }`;
 
-        req.files.imageURL
-          .mv(`static/meals/${req.files.imageURL.name}`)
-          .then(() => {
-            mealModule
-              .updateOne(
-                {
-                  title: req.body.title,
-                },
-                {
-                  imageURL: req.files.imageURL.name,
-                }
-              )
-              .then(() => {
-                console.log(
-                  "Meal document was updated with the meal pic file name."
-                );
-                res.redirect("/menu_edit");
-              })
-              .catch((err) => {
-                console.log(`Error updating the user.  ${err}`);
-              });
-          });
-      }
+      //   req.files.imageURL
+      //     .mv(`static/meals/${req.files.imageURL.name}`)
+      //     .then(() => {
+      //       mealModule
+      //         .updateOne(
+      //           {
+      //             title: req.body.title,
+      //           },
+      //           {
+      //             imageURL: req.files.imageURL.name,
+      //           }
+      //         )
+      //         .then(() => {
+      //           console.log(
+      //             "Meal document was updated with the meal pic file name."
+      //           );
+      //           res.redirect("/menu_edit");
+      //         })
+      //         .catch((err) => {
+      //           console.log(`Error updating the mealpic.  ${err}`);
+      //           res.redirect("/menu_edit");
+      //         });
+      //     });
+      // }
       res.redirect("/menu_edit");
     })
     .catch((err) => {
-      console.log(`Error updating the user.  ${err}`);
+      console.log(`Error updating the meal.  ${err}`);
     });
 });
 

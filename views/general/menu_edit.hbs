@@ -16,10 +16,9 @@
                     <input type="text" name="title" id="title" placeholder="Title"> 
                     <input type="text" name="included" id="included" placeholder="Included"> 
                     <input type="text" name="desc" id="desc" placeholder="Description"> 
-                    {{!-- <input type="" name="category" id="category" placeholder="Category"> --}}
                     <select name="category" id="category" > 
                     <option>Classic Meals</option>
-                    <option>Kid Meals</option>
+                    <option>Kid-Friendly Meals</option>
                     </select>
                     <input type="text" name="price" id="price" placeholder="Price ($50)"> 
                     <input type="text" name="cookingTime" id="cookingTime" placeholder="CookingTime (25mins)"> 
@@ -34,7 +33,7 @@
                        <option>dinner</option>
                            </select>
                     <label>Meal Image</label>
-                    <input type="file" name="imageURL" id="imageURL" placeholder="Picture"> 
+                    <input type="file" name="imageURL" accept=".jpg, .gif, .png" id="imageURL" placeholder="Picture"> 
                     <button type="submit" class="addSubmit" >Add Meal</button>
 
                  </form>  
@@ -46,7 +45,7 @@
                     <br>
                 {{#each data}}
                     
-                    <form method="post"  enctype="multipart/form-data">
+                    <form method="post"  >
                 
                         <label>  Title </label> 
                         <input type="text" name="title" value="{{title}}" readonly />
@@ -69,13 +68,14 @@
                         <label>  Time </label>       
                         <input type="text" name="time" value="{{time}}" />
                         <label id="imageURL">  imageURL </label>       
-                        <img  src="/meals/{{imageURL}}" style="width: 100px; heigh: 50px;" >
-                        <input type="file" name="imageURL" class="imageURL"value="{{imageURL}}" />
+                        <img  src="/meals/{{imageURL}}" style="width: 100px; heigh: 50px" >
+                        {{!-- <input type="file" name="imageURL" class="imageURL" value="{{imageURL}}" /> --}}
                         <div class="buttons">
                              <button type="submit" id="updatebtn" formaction="/menu_edit_update">Update</button>
                               <button type="submit" id="deletebtn" formaction="/menu_edit_delete">Delete</button>
                         </div>
                     </form>           
+
                     <br>             
                         {{/each}}
             </div>
