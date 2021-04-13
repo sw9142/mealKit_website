@@ -1001,6 +1001,25 @@ footer {
   margin: 1rem;
 }
 
+.gotomenu_editpage {
+  position: absolute;
+  bottom: 5rem;
+  left: 5rem;
+  z-index: 2;
+}
+
+.gotomenu_editpage button {
+  border: unset;
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 15rem;
+  height: 3rem;
+}
+
 /*---------------menu_edit.hbs--------------*/
 .addNewMeal {
   width: 100%;

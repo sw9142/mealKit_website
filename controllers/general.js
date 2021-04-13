@@ -72,31 +72,35 @@ router.get("/menu", (req, res) => {
 });
 
 router.get("/menu_edit", (req, res) => {
-  mealModule.find().count({}, (err, count) => {
-    if (err) {
-      return res.send(err);
-    } else if (count === 0) {
-      mealModule.collection.insertMany(menuList.listExport(), (err, docs) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          res.redirect("general/menu_edit");
-        }
-      });
-    } else {
-      mealModule
-        .find({})
-        .exec()
-        .then((data) => {
-          data = data.map((value) => value.toObject());
-
-          res.render("general/menu_edit", {
-            msg: "Data was already loaded",
-            data: data,
-          });
+  if (req.session.user && req.session.user.isDataEntry) {
+    mealModule.find().count({}, (err, count) => {
+      if (err) {
+        return res.send(err);
+      } else if (count === 0) {
+        mealModule.collection.insertMany(menuList.listExport(), (err, docs) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            res.redirect("general/menu_edit");
+          }
         });
-    }
-  });
+      } else {
+        mealModule
+          .find({})
+          .exec()
+          .then((data) => {
+            data = data.map((value) => value.toObject());
+
+            res.render("general/menu_edit", {
+              msg: "Data was already loaded",
+              data: data,
+            });
+          });
+      }
+    });
+  } else {
+    res.redirect("/menu");
+  }
 });
 //add new meal
 router.post("/menu_edit", (req, res) => {
