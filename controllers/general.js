@@ -264,4 +264,19 @@ router.get("/customer", (req, res) => {
   }
 });
 
+router.get("/desc/:title", (req, res) => {
+  const title = req.params.title;
+
+  mealModule
+    .find({ title: title })
+    .exec()
+    .then((data) => {
+      data = data.map((value) => value.toObject());
+
+      res.render("general/desc", {
+        data: data[0],
+      });
+    });
+});
+
 module.exports = router;

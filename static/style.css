@@ -82,7 +82,9 @@ a {
   overflow: hidden;
 }
 
-.inner-howitworks {
+.inner-howitworks,
+.inner-onthemenu,
+.inner-desc {
   width: 100%;
   height: 100%;
   padding: 0rem 2rem 5rem 2rem;
@@ -90,13 +92,6 @@ a {
   overflow: hidden;
 }
 
-.inner-onthemenu {
-  width: 100%;
-  height: 100%;
-  padding: 0rem 2rem 5rem 2rem;
-  margin: 0 auto;
-  overflow: hidden;
-}
 .navbar_logo {
   padding: 11px 14px;
   font-size: 29px;
@@ -353,17 +348,6 @@ section {
   margin-left: 1vw;
   color: rgb(97 102 59);
 }
-/* 
-.mealtype-lunch:hover,
-.mealtype-dinner:hover {
-  color: whitesmoke;
-  background-color: rgb(97 102 59);
-}
-
-.mealtype-dinner:focus .mealtype-lunch {
-  color: rgb(97 102 59);
-  background-color: #f5f5f5;
-} */
 
 .slide-prev {
   font-size: 2rem;
@@ -638,7 +622,6 @@ footer {
   text-align: center;
   font-family: "Lobster", cursive;
   margin: 4rem 0 1rem 0;
-  /* color: #61663b; */
   color: #c98106;
   text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
 }
@@ -1143,6 +1126,87 @@ footer {
   border-radius: 5px;
   color: white;
 }
+
+/*------------------desc.hbs----------------------*/
+.desc_picture-wrapper {
+  width: 80%;
+  height: 45rem;
+  position: relative;
+  margin: 5rem auto 1rem auto;
+}
+
+.desc_picture {
+  width: 100%;
+  height: 100%;
+}
+
+.desc_picture_strip {
+  background-color: rgba(255, 255, 255, 0.637);
+  width: 100%;
+  height: 8rem;
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.desc_picture_cookingtime,
+.desc_picture_calories,
+.desc_picture_serving {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.desc_picture_contents_wrapper {
+  margin-top: 2rem;
+}
+
+.desc_picture_strip_title {
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_strip_contents {
+  size: 1.5rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_title {
+  width: 100%;
+  font-size: 4rem;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  margin: 0rem 0 1rem 0;
+  color: #c98106;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_desc {
+  padding: 0rem 8rem;
+  margin: 0rem 1rem;
+}
+
+.gotocart {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 2rem;
+}
+
+.gotocartbtn {
+  border: unset;
+  background-color: rgb(97, 102, 59);
+  transition: all 1s;
+  width: 10rem;
+  font-size: 1rem;
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+
 /*-----------------------------------------------------------------------------------------*/
 
 @media only screen and (min-width: 1200px) {
@@ -1153,6 +1217,9 @@ footer {
     max-width: 1400px;
   }
   .inner-onthemenu {
+    max-width: 1100px;
+  }
+  .inner-desc {
     max-width: 1100px;
   }
 }
@@ -1245,7 +1312,8 @@ footer {
   }
 
   .inner,
-  .inner-howitworks {
+  .inner-howitworks,
+  .inner-desc {
     padding: 0 1rem;
   }
 
