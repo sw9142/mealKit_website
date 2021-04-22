@@ -959,7 +959,7 @@ footer {
   padding: 1rem;
   top: 3rem;
   left: 3rem;
-  z-index: 3;
+  z-index: 2;
 }
 
 .welcomepage_hiyou {
@@ -1231,6 +1231,7 @@ td {
   border-collapse: collapse;
   text-align: left;
   line-height: 1.5;
+  font-size: 3vw;
 }
 .shoppingcart_tabletitle {
   padding: 1.5rem;
@@ -1243,7 +1244,7 @@ td {
 
 #shoppingcart_image {
   width: 150px;
-  padding: 10px;
+
   font-weight: bold;
   vertical-align: top;
   border-bottom: 1px solid #ccc;
@@ -1270,7 +1271,7 @@ td {
 .sc_removebtn {
   border: solid 1px #b3bc6d;
   border-radius: 2px;
-  font-size: 0.9vw;
+  font-size: 1.8vw;
   margin: 0rem;
   width: 100%;
   cursor: pointer;
@@ -1316,6 +1317,7 @@ td {
 
 #sc_totalprice {
   padding: 1rem;
+  font-size: 3.5vw;
 }
 #sc_chectoutbtn_div {
   vertical-align: middle;
@@ -1351,6 +1353,7 @@ td {
     padding: 10px;
     position: relative;
     height: 100%;
+    z-index: 3;
   }
   .navbar {
     display: flex;
@@ -1615,6 +1618,82 @@ td {
   }
   #comfortmeal {
     font-size: 4rem;
+  }
+
+  /*desc.hbs*/
+  .desc_picture-wrapper {
+    height: 100%;
+  }
+
+  .desc_picture_title {
+    font-size: 8vw;
+  }
+  .desc_picture_desc {
+    padding: 0rem 5rem;
+  }
+  .desc_picture {
+    height: auto;
+  }
+
+  .desc_included,
+  .desc_desc {
+    font-size: 2vw;
+  }
+
+  .desc_picture_strip_title {
+    font-size: 2.5vw;
+  }
+  .desc_picture_strip_contents {
+    font-size: 1.9vw;
+  }
+
+  .desc_picture_strip {
+    height: 18vw;
+  }
+
+  .desc_picture_contents_wrapper {
+    margin-top: 4vw;
+  }
+  @media only screen and (max-width: 480px) {
+    .desc_picture_desc {
+      padding: 0rem 2rem;
+    }
+    .desc_picture {
+      height: 50%;
+    }
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  /*shopping cart .hbs*/
+
+  .sc_title,
+  .sc_qty,
+  .sc_price {
+    font-size: 2vw;
+  }
+
+  .sc_totalprice {
+    font-size: 2.5vw;
+  }
+
+  #shoppingcart_image {
+    width: 20vw;
+    padding: 0;
+  }
+
+  .shoppingcart_totalprice {
+    padding-right: 0;
+  }
+
+  .sc_checkoutbtn {
+    font-size: 3vw;
+    width: 20vw;
+  }
+  @media only screen and (max-width: 350px) {
+    .shoppingcart_wrapper {
+      margin: 8rem 0rem;
+    }
   }
 }
 

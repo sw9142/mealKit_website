@@ -270,7 +270,7 @@ router.get("/add_menu/:_id", (req, res) => {
 });
 
 router.get("/remove_menu/:_id", (req, res) => {
-  const itemId = req.params._id;
+  const Id = req.params._id;
 
   if (!req.session.user) {
     res.render(VIEW_NAME, prepareViewModel(req, "You must be logged in."));
@@ -279,7 +279,7 @@ router.get("/remove_menu/:_id", (req, res) => {
     var message;
 
     const index = cart.findIndex((cart_item) => {
-      return cart_item.id == itemId;
+      return cart_item.id == Id;
     });
 
     if (index >= 0) {
@@ -338,7 +338,7 @@ router.get("/check_out", (req, res) => {
             `;
 
     const htmlcontents = msghtml1 + msghtml2 + msghtml3;
-    console.log(htmlcontents);
+
     const msg = {
       to: `${user.email}`,
       from: "schoi123@myseneca.ca",
@@ -356,7 +356,6 @@ router.get("/check_out", (req, res) => {
     message = "You cannot check-out, there are no items in the cart.";
   }
 
-  // Render the view using the view model.
   res.render(VIEW_NAME, prepareViewModel(req, message));
 });
 
