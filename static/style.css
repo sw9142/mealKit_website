@@ -1243,8 +1243,7 @@ td {
 }
 
 #shoppingcart_image {
-  width: 150px;
-
+  width: 20vw;
   font-weight: bold;
   vertical-align: top;
   border-bottom: 1px solid #ccc;
@@ -1262,17 +1261,18 @@ td {
   padding: 10px;
   vertical-align: middle;
   border-bottom: 1px solid #ccc;
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
 
 #sc_qty,
 #sc_price {
   text-align: center;
 }
+
 .sc_removebtn {
   border: solid 1px #b3bc6d;
   border-radius: 2px;
-  font-size: 1.8vw;
+  font-size: 1vw;
   margin: 0rem;
   width: 100%;
   cursor: pointer;
@@ -1288,11 +1288,11 @@ td {
   color: white;
   border: solid 1px #b3bc6d;
   margin: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   border-radius: 5px;
   font-family: "Noto Sans JP", sans-serif;
   padding: 6px;
-  width: 150px;
+  width: 20vw;
 }
 .shoppingcart_msg {
   color: red;
@@ -1318,7 +1318,7 @@ td {
 
 #sc_totalprice {
   padding: 1rem;
-  font-size: 3.5vw;
+  font-size: 1.5vw;
 }
 #sc_chectoutbtn_div {
   vertical-align: middle;
@@ -1655,6 +1655,26 @@ td {
   .desc_picture_contents_wrapper {
     margin-top: 4vw;
   }
+
+  @media only screen and (max-width: 750px) {
+    .shoppingcart_table {
+      font-size: 1.3vw;
+    }
+
+    #sc_title,
+    #sc_qty,
+    #sc_price {
+      font-size: 2vw;
+    }
+    #sc_totalprice {
+      font-size: 2.4vw;
+    }
+
+    .shoppingcart_totalprice {
+      padding-right: 0rem;
+    }
+  }
+
   @media only screen and (max-width: 480px) {
     .desc_picture_desc {
       padding: 0rem 2rem;
@@ -1662,38 +1682,8 @@ td {
     .desc_picture {
       height: 50%;
     }
-  }
-}
-
-@media only screen and (max-width: 590px) {
-  /*shopping cart .hbs*/
-
-  .sc_title,
-  .sc_qty,
-  .sc_price {
-    font-size: 2vw;
-  }
-
-  .sc_totalprice {
-    font-size: 2.5vw;
-  }
-
-  #shoppingcart_image {
-    width: 20vw;
-    padding: 0;
-  }
-
-  .shoppingcart_totalprice {
-    padding-right: 0;
-  }
-
-  .sc_checkoutbtn {
-    font-size: 3vw;
-    width: 20vw;
-  }
-  @media only screen and (max-width: 350px) {
-    .shoppingcart_wrapper {
-      margin: 8rem 0rem;
+    .sc_checkoutbtn {
+      font-size: 3vw;
     }
   }
 }
