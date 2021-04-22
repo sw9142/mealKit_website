@@ -18,7 +18,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const fileUpload = require("express-fileupload");
-dotenv.config({ path: "./config/keys.env" });
+//dotenv.config({ path: "./config/keys.env" });
 const app = express();
 
 app.engine(
@@ -40,10 +40,7 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  // res.locals.user is a global handlebars variable.
-  // This means that ever single handlebars file can access that user variable
   res.locals.user = req.session.user;
-
   next();
 });
 
