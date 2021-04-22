@@ -232,9 +232,8 @@ router.get("/add_menu/:_id", (req, res) => {
   if (!req.session.user) {
     res.render(VIEW_NAME, prepareViewModel(req, "You must be logged in."));
   } else {
-    console.log(Id);
     var item = findItem(Id);
-    console.log("item", item);
+
     var cart = (req.session.cart = req.session.cart || []);
     var message;
 
@@ -297,37 +296,40 @@ router.get("/remove_menu/:_id", (req, res) => {
 
 router.get("/check_out", (req, res) => {
   var message;
-
+  var cartTotal = 0;
+  var totalQty = 0;
   if (!req.session.user) {
     message = "You must be logged in.";
   } else if (Array.isArray(req.session.cart) && req.session.cart.length > 0) {
     const user = req.session.user;
-    const cartList = req.session.cart;
-    var total = 0;
-    cartList.forEach((cartMenu) => {
-      total += parseFloat(cartMenu.menus.price.slice(1)) * cartMenu.qty;
-    });
+    const cart = req.session.cart;
+
+    const hasMeals = Array.isArray(cart) && cart.length > 0;
+    if (hasMeals) {
+      cart.forEach((item) => {
+        cartTotal += parseFloat(item.menus.price.slice(1)) * item.qty;
+        totalQty += item.qty;
+      });
+    }
+
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_APIKEY);
 
     const msg = {
       to: `${user.email}`,
       from: "schoi123@myseneca.ca",
-      subject: "Thanks for purchasing our products :) ",
+      subject: `Your ComfortFood order of ${totalQty} items has shipped `,
       html: `
-              Thanks for purchasing our products!<br>
+              Hello ${user.firstName} ${user.lastName} <br>
+              Thank you for shopping with us!<br>
               <br>
-              Your Full Name: ${user.firstName} ${user.lastName}<br>
-              Your Email Address: ${user.email}<br>
-              Your Total Purchase:  $${total}<br>
-              Your Total Purchase:  $${total}<br>
-              Your Total Purchase:  $${total}<br>
+              Items:  $${cart.item} of ${totalQty}  <br>
+              Total Purchase:  $${cartTotal}<br>
+         
               <br>
               <br>
-              sincerely<br>
-              Sewon Choi            <br>
-              Student Num: 123717209  <br>
-              Student Id : schoi123   <br>
+              We hope to see you again<br>
+              Sewon Choi   123717209 <br>
               Copyright © Winter 2021, Sewon Choi, WEB322NDD<br>
               `,
     };
