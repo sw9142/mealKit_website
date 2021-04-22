@@ -135,7 +135,7 @@ a {
 
 .navbar_login {
   margin: 0;
-  padding: 11px 14px;
+  padding: 11px 2px;
 
   display: flex;
 }
@@ -143,7 +143,7 @@ a {
 .navbar_login button {
   background-color: white;
   border: solid 1px #b3bc6d;
-  margin: 3px;
+  margin: 1px;
   border-radius: 5px;
   font-family: "Noto Sans JP", sans-serif;
   padding: 6px;
@@ -165,6 +165,14 @@ a {
   cursor: pointer;
   background-color: #e69206;
   color: white;
+}
+
+#shoppingCart {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #f5f2ee;
+  color: #e69206;
+  width: 130px;
 }
 
 #signup {
@@ -233,7 +241,6 @@ section {
   color: white;
   padding: 1vw 2vw;
   transition: all 0.4s;
-
   box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
 }
 
@@ -1207,6 +1214,112 @@ footer {
   color: white;
 }
 
+/*-----------------<shoppingcart.hbs>------------------------*/
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.shoppingcart_wrapper {
+  margin: 8rem 1rem;
+}
+.shoppingcart_table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+}
+.shoppingcart_tabletitle {
+  padding: 1.5rem;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #959b6a;
+  border-bottom: 3px solid #61663b;
+}
+
+#shoppingcart_image {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+
+#sc_image {
+  text-align: center;
+}
+
+#sc_title,
+#sc_qty,
+#sc_price {
+  width: 350px;
+  padding: 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+}
+
+#sc_qty,
+#sc_price {
+  text-align: center;
+}
+.sc_removebtn {
+  border: solid 1px #b3bc6d;
+  border-radius: 2px;
+  font-size: 0.9vw;
+  margin: 0rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: #f5f2ee;
+  color: #e69206;
+  padding: 0.2rem;
+  transition: all 0.4s;
+}
+.sc_checkoutbtn {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  color: white;
+  border: solid 1px #b3bc6d;
+  margin: 1px;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  width: 150px;
+}
+.shoppingcart_msg {
+  color: red;
+  font-size: 0.9rem;
+}
+.sc_removebtn_wrapper {
+  width: 350px;
+  padding: 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+}
+.sc_removebtn:hover,
+.sc_checkoutbtn:hover {
+  transition: transform 0.2s;
+}
+
+.shoppingcart_totalprice {
+  margin: 1rem;
+  padding-right: 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#sc_totalprice {
+  padding: 1rem;
+}
+#sc_chectoutbtn_div {
+  vertical-align: middle;
+}
 /*-----------------------------------------------------------------------------------------*/
 
 @media only screen and (min-width: 1200px) {

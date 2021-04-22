@@ -191,4 +191,163 @@ router.post("/login", (req, res) => {
   }
 });
 
+const VIEW_NAME = "user/shoppingcart.hbs";
+
+const prepareViewModel = function (req, message) {
+  if (req.session && req.session.user) {
+    var cart = req.session.cart || [];
+    var cartTotal = 0;
+
+    const hasMeals = Array.isArray(cart) && cart.length > 0;
+    if (hasMeals) {
+      cart.forEach((item) => {
+        cartTotal += parseFloat(item.menus.price.slice(1)) * item.qty;
+      });
+    }
+
+    return {
+      hasMeals: hasMeals,
+      menus: req.session.cart,
+      cartTotal: "$" + cartTotal.toFixed(2),
+      message: message,
+    };
+  } else {
+    return {
+      hasMenus: false,
+      menus: [],
+      cartTotal: "$0.00",
+      message: message,
+    };
+  }
+};
+const findItem = function (id) {
+  return allMeal.find((item) => {
+    return item._id == id;
+  });
+};
+
+router.get("/add_menu/:_id", (req, res) => {
+  const Id = req.params._id;
+
+  if (!req.session.user) {
+    res.render(VIEW_NAME, prepareViewModel(req, "You must be logged in."));
+  } else {
+    console.log(Id);
+    var item = findItem(Id);
+    console.log("item", item);
+    var cart = (req.session.cart = req.session.cart || []);
+    var message;
+
+    if (item) {
+      // Song was found in the database, now search the shopping cart.
+      var found = false;
+
+      cart.forEach((cart_item) => {
+        if (cart_item.title == item.title) {
+          cart_item.qty++;
+          found = true;
+        }
+      });
+
+      if (found) {
+        message =
+          "Meal was already in the cart, incremented the quantity by one.";
+      } else {
+        cart.push({
+          title: item.title,
+          qty: 1,
+          menus: item,
+          id: item._id,
+        });
+
+        message = "The meal added to the shopping cart.";
+      }
+    } else {
+      message = "Sorry, that meal is not in the database.";
+    }
+
+    res.render(VIEW_NAME, prepareViewModel(req, message));
+  }
+});
+
+router.get("/remove_menu/:_id", (req, res) => {
+  const itemId = req.params._id;
+
+  if (!req.session.user) {
+    res.render(VIEW_NAME, prepareViewModel(req, "You must be logged in."));
+  } else {
+    var cart = req.session.cart || [];
+    var message;
+
+    const index = cart.findIndex((cart_item) => {
+      return cart_item.id == itemId;
+    });
+
+    if (index >= 0) {
+      message = `Removed ${cart[index].name} from the cart.`;
+
+      cart.splice(index, 1);
+    } else {
+      message = "The meal was not found in your cart.";
+    }
+
+    res.render(VIEW_NAME, prepareViewModel(req, message));
+  }
+});
+
+router.get("/check_out", (req, res) => {
+  var message;
+
+  if (!req.session.user) {
+    message = "You must be logged in.";
+  } else if (Array.isArray(req.session.cart) && req.session.cart.length > 0) {
+    const user = req.session.user;
+    const cartList = req.session.cart;
+    var total = 0;
+    cartList.forEach((cartMenu) => {
+      total += parseFloat(cartMenu.menus.price.slice(1)) * cartMenu.qty;
+    });
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SENDGRID_APIKEY);
+
+    const msg = {
+      to: `${user.email}`,
+      from: "schoi123@myseneca.ca",
+      subject: "Thanks for purchasing our products :) ",
+      html: `
+              Thanks for purchasing our products!<br>
+              <br>
+              Your Full Name: ${user.firstName} ${user.lastName}<br>
+              Your Email Address: ${user.email}<br>
+              Your Total Purchase:  $${total}<br>
+              Your Total Purchase:  $${total}<br>
+              Your Total Purchase:  $${total}<br>
+              <br>
+              <br>
+              sincerely<br>
+              Sewon Choi            <br>
+              Student Num: 123717209  <br>
+              Student Id : schoi123   <br>
+              Copyright © Winter 2021, Sewon Choi, WEB322NDD<br>
+              `,
+    };
+    sgMail.send(msg).catch((err) => {
+      console.log(`Error ${err}`);
+      res.send("Error");
+    });
+
+    message = "Thank you for your purchase, checked out!";
+    req.session.cart = [];
+  } else {
+    message = "You cannot check-out, there are no items in the cart.";
+  }
+
+  // Render the view using the view model.
+  res.render(VIEW_NAME, prepareViewModel(req, message));
+});
+
+router.get("/shoppingcart", (req, res) => {
+  res.render("user/shoppingcart", prepareViewModel(req));
+});
+
 module.exports = router;

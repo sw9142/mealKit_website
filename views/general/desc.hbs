@@ -4,11 +4,11 @@
  
 
 
-{{#if data}}
 
     <div class="desc_picture-wrapper">
 
-        <img src="/meals/{{data.imageURL}}" class="desc_picture" >
+{{#each data}}
+        <img src="/meals/{{imageURL}}" class="desc_picture" >
         <div class="desc_picture_strip">
             <div class="desc_picture_cookingtime">
                 <div class="desc_picture_contents_wrapper">
@@ -16,7 +16,7 @@
                             Cooking Time 
                     </div>
                     <div class="desc_picture_strip_contents">
-                            {{data.cookingTime}}
+                            {{cookingTime}}
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                             Servings
                     </div>
                     <div class="desc_picture_strip_contents">
-                            {{data.serving}}
+                            {{serving}}
                     </div>
                 </div>
             
@@ -37,7 +37,7 @@
                         Calories
                     </div>
                     <div class="desc_picture_strip_contents">
-                        {{data.calories}}
+                        {{calories}}
                     </div>
                 </div>
             </div>
@@ -46,31 +46,30 @@
 
     <div class="desc_picture_contents_wrapper">
             <div class="desc_picture_title">
-                {{data.title}}
+                {{title}}
             </div>
 
             <div class="desc_picture_desc">
                 <div class="desc_included">
-             {{data.included}}
+             {{included}}
                 </div>
                 <div class="desc_desc">
-                 {{data.desc}}
+                 {{desc}}
                 </div>
             </div>
 
     </div>
 
-
 <div class="gotocart">
-        <a href="" ><button type="button" class="gotocartbtn">Buy for {{data.price}}</button></a>
+      <button type="button" class="gotocartbtn" onclick="window.location.href='/user/add_menu/{{_id}}'" >Buy for {{price}}</button>
 </div>
 
 
+{{/each}}
 
 
 
 
 
-{{/if}}
 
 </div>

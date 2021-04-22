@@ -22,11 +22,14 @@
                   admin
                 {{/if}}
                
-               {{user.firstName}} {{user.lastName}}
+               {{user.firstName}} {{user.lastName}} 
               </div>
                <ul class="navbar_login">
                 <a href="/user/logout"><button type="submit" id="logout">Log out</button></a>
-     </ul>
+              </ul>
+              <ul class="navbar_login">
+                <a href="/user/shoppingcart"><button type="submit" id="shoppingCart">Shopping Cart</button></a>
+              </ul>
               {{else}}
                 <ul class="navbar_login">
                 <a href="/user/login"><button type="submit" id="login">Log In</button></a
