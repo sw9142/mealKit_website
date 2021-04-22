@@ -18,7 +18,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const fileUpload = require("express-fileupload");
-//dotenv.config({ path: "./config/keys.env" });
+dotenv.config({ path: "./config/keys.env" });
 const app = express();
 
 app.engine(

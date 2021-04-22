@@ -315,23 +315,35 @@ router.get("/check_out", (req, res) => {
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_APIKEY);
 
+    var msghtml1 = `
+            Hello ${user.firstName} ${user.lastName} <br>
+            Thank you for shopping with us!<br>
+            <br>
+          
+            `;
+
+    var msghtml2 = "Item you purchased: <br>";
+    for (let i = 0; i < cart.length; i++) {
+      msghtml2 += ` Items: ${cart[i].title} of ${cart[i].qty}  <br>`;
+    }
+    var msghtml3 = `
+          
+            <br>
+            Total Purchase:  $${cartTotal.toFixed(2)}<br>
+            <br>
+            <br>
+            We hope to see you again<br>
+            Sewon Choi   123717209 <br>
+            Copyright © Winter 2021, Sewon Choi, WEB322NDD<br>
+            `;
+
+    const htmlcontents = msghtml1 + msghtml2 + msghtml3;
+    console.log(htmlcontents);
     const msg = {
       to: `${user.email}`,
       from: "schoi123@myseneca.ca",
       subject: `Your ComfortFood order of ${totalQty} items has shipped `,
-      html: `
-              Hello ${user.firstName} ${user.lastName} <br>
-              Thank you for shopping with us!<br>
-              <br>
-              Items:  $${cart.item} of ${totalQty}  <br>
-              Total Purchase:  $${cartTotal}<br>
-         
-              <br>
-              <br>
-              We hope to see you again<br>
-              Sewon Choi   123717209 <br>
-              Copyright © Winter 2021, Sewon Choi, WEB322NDD<br>
-              `,
+      html: htmlcontents,
     };
     sgMail.send(msg).catch((err) => {
       console.log(`Error ${err}`);
