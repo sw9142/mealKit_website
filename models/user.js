@@ -45,7 +45,7 @@ userSchema.pre("save", function (next) {
           next();
         })
         .catch((err) => {
-          console.log(`Error occured when salting. ${err}`);
+          console.log(`Error occurred when salting. ${err}`);
         });
     })
     .catch((err) => {

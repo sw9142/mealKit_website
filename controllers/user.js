@@ -144,7 +144,7 @@ router.post("/login", (req, res) => {
                   userModel
                     .updateOne(
                       { email: req.body.email },
-                      { $set: { isDataEntry: true } }
+                      { $set: { isDataEntry: false } }
                     )
                     .exec()
                     .then(() => {

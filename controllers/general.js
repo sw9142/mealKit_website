@@ -5,7 +5,7 @@ const menuList = require("../models/menuList");
 const mealModule = require("../models/mealKit");
 
 /*
-Name: Sewon Choi Student ID: 123717209 Course: NDD
+Name: Sewon Choi 
 GitHub Repository: https://github.com/sw9142/mealKit_website 
 Heroku URL: https://comfortmeal.herokuapp.com/
 */
@@ -116,6 +116,7 @@ router.post("/menu_edit", (req, res) => {
     calories,
     topMeal,
     time,
+    imageURL,
   } = req.body;
 
   const newMeal = new mealModule({
@@ -128,7 +129,9 @@ router.post("/menu_edit", (req, res) => {
     serving: serving,
     calories: calories,
     time: time,
+    imageURL: imageURL,
   });
+
   if (topMeal === "TopMeal: true") {
     newMeal.topMeal = true;
   } else if (topMeal === "TopMeal: false") {
