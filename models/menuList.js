@@ -9,8 +9,9 @@ const mealList = [
     cookingTime: "30min",
     serving: "2",
     calories: "1000",
-    imageURL: "/meals/meatballs.jpg",
+    imageURL: "meatballs.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Avocado&Egg Sandwich",
@@ -21,8 +22,9 @@ const mealList = [
     cookingTime: "10min",
     serving: "2",
     calories: "890",
-    imageURL: "/meals/avocadoeggsandwich.jpg",
+    imageURL: "avocadoeggsandwich.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Homemade Whole Wheat Pasta",
@@ -33,8 +35,9 @@ const mealList = [
     cookingTime: "20min",
     serving: "2",
     calories: "900",
-    imageURL: "/meals/pasta.jpg",
+    imageURL: "pasta.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "The Classic Burger",
@@ -46,8 +49,9 @@ const mealList = [
     cookingTime: "30min",
     serving: "2",
     calories: "1200",
-    imageURL: "/meals/burger.jpg",
+    imageURL: "burger.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "New York Strip Steak",
@@ -60,8 +64,9 @@ const mealList = [
     cookingTime: "30min",
     serving: "2",
     calories: "1100",
-    imageURL: "/meals/steak.jpg",
+    imageURL: "steak.jpg",
     topMeal: true,
+    time: "dinner",
   },
   {
     title: "Garden Salad Bowl",
@@ -73,8 +78,9 @@ const mealList = [
     cookingTime: "10min",
     serving: "1",
     calories: "500",
-    imageURL: "/meals/bowl.jpg",
-    topMeal: false,
+    imageURL: "bowl.jpg",
+    topMeal: true,
+    time: "dinner",
   },
   {
     title: "The Classic Burger",
@@ -86,8 +92,9 @@ const mealList = [
     cookingTime: "30min",
     serving: "2",
     calories: "1200",
-    imageURL: "/meals/burger.jpg",
-    topMeal: false,
+    imageURL: "burger.jpg",
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Green Crunch Roll",
@@ -99,8 +106,9 @@ const mealList = [
     cookingTime: "20min",
     serving: "2",
     calories: "700",
-    imageURL: "/meals/sushi.jpg",
-    topMeal: false,
+    imageURL: "sushi.jpg",
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "English Apple Pie",
@@ -111,8 +119,9 @@ const mealList = [
     cookingTime: "20min",
     serving: "2",
     calories: "700",
-    imageURL: "/meals/applePie.jpg",
-    topMeal: false,
+    imageURL: "applePie.jpg",
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Salmon Teriyaki",
@@ -123,8 +132,9 @@ const mealList = [
     cookingTime: "40min",
     serving: "2",
     calories: "800",
-    imageURL: "/meals/salmon.jpg",
-    topMeal: false,
+    imageURL: "salmon.jpg",
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Grilled Lemon Chicken",
@@ -135,8 +145,9 @@ const mealList = [
     cookingTime: "40min",
     serving: "2",
     calories: "800",
-    imageURL: "/meals/chicken.jpg",
-    topMeal: false,
+    imageURL: "chicken.jpg",
+    topMeal: true,
+    time: "lunch",
   },
   {
     title: "Roast Pumpkin, Spinach and Seeds Salad ",
@@ -149,10 +160,15 @@ const mealList = [
     cookingTime: "15min",
     serving: "2",
     calories: "700",
-    imageURL: "/meals/pumpkin.jpg",
-    topMeal: false,
+    imageURL: "pumpkin.jpg",
+    topMeal: true,
+    time: "lunch",
   },
 ];
+
+module.exports.listExport = function () {
+  return mealList;
+};
 
 module.exports.getCategory = function () {
   return mealList[0].category;
@@ -168,11 +184,22 @@ module.exports.classicMeals = function (string) {
   return classicMeals;
 };
 
-module.exports.topMealList = function () {
+module.exports.topMealListLunch = function () {
   var topMeals = [];
 
   for (var i = 0; i < mealList.length; i++) {
-    if (mealList[i].topMeal) {
+    if (mealList[i].topMeal && mealList[i].time === "lunch") {
+      topMeals.push(mealList[i]);
+    }
+  }
+  return topMeals;
+};
+
+module.exports.topMealListDinner = function () {
+  var topMeals = [];
+
+  for (var i = 0; i < mealList.length; i++) {
+    if (mealList[i].topMeal && mealList[i].time === "dinner") {
       topMeals.push(mealList[i]);
     }
   }

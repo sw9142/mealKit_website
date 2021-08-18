@@ -1,0 +1,77 @@
+
+<div class="inner-desc">
+
+
+
+    <div class="desc_picture-wrapper">
+{{#if messageValidation }}
+<div id="msgDesc">{{messageValidation}}</div>
+
+{{else}}
+{{#each data}}
+        <img src="/meals/{{imageURL}}" class="desc_picture" >
+        <div class="desc_picture_strip">
+            <div class="desc_picture_cookingtime">
+                <div class="desc_picture_contents_wrapper">
+                    <div class="desc_picture_strip_title">
+                            Cooking Time 
+                    </div>
+                    <div class="desc_picture_strip_contents">
+                            {{cookingTime}}
+                    </div>
+                </div>
+            </div>
+            <div class="desc_picture_serving">
+                    <div class="desc_picture_contents_wrapper">
+                    <div class="desc_picture_strip_title">
+                            Servings
+                    </div>
+                    <div class="desc_picture_strip_contents">
+                            {{serving}}
+                    </div>
+                </div>
+            
+            </div>
+            <div class="desc_picture_calories">
+                    <div class="desc_picture_contents_wrapper">
+                    <div class="desc_picture_strip_title">
+                        Calories
+                    </div>
+                    <div class="desc_picture_strip_contents">
+                        {{calories}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="desc_picture_contents_wrapper">
+            <div class="desc_picture_title">
+                {{title}}
+            </div>
+
+            <div class="desc_picture_desc">
+                <div class="desc_included">
+             {{included}}
+                </div>
+                <div class="desc_desc">
+                 {{desc}}
+                </div>
+            </div>
+
+    </div>
+
+<div class="gotocart">
+      <button type="button" class="gotocartbtn" onclick="window.location.href='/user/add_menu/{{_id}}'" >Buy for {{price}}</button>
+</div>
+
+
+{{/each}}
+{{/if}}
+
+
+
+
+
+
+</div>

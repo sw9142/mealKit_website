@@ -1,0 +1,25 @@
+
+
+<div class="welcomepage">
+    <div class="welcomepage-img">
+    <img src="/8.jpg" id="welcomepage"  alt="welcomepage" >
+    </div>
+
+    <div class="welcomepage-message">
+        <div class="welcomepage_hiyou">
+       <div class="dataentryDash"><i class="fas fa-users-cog"></i> DataEntry dashboard</div>
+            {{#if user}}
+             <div>Hi! :) {{user.firstName}} {{user.lastName}}</div>
+             {{/if}}
+        </div>
+        <div class="welcomepage_welcome">
+             <div>Welcome to <strong>Comfort Meal!</strong></div>
+        </div>
+           <div class="gotomenu_editpage">
+       <a href="/menu_edit"><button type="button">Go to Menu Editing Page</button></a> 
+    </div>
+    </div>
+
+ 
+  
+</div>

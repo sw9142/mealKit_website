@@ -6,7 +6,17 @@
  <div class="formcontainer">
   <div class="loginpage-title">WELCOME</div>
 
-  <form action="/login" method="post" class="loginform" >
+{{#if messageValidation }}
+<span id="msglogin" style="color: red;">{{messageValidation.login}}</span>
+{{/if}}
+
+
+
+{{#each errors }}
+<span id="errlogin" style="color: red;">{{this}}</span>
+{{/each}}
+
+  <form action="/user/login" method="post" class="loginform" >
   <input id="email" type="email" name="email" placeholder="Email Address" autofocus  value="{{value.email}}"> 
   {{#if messageValidation.email}}
     <p id="validationMsg">{{messageValidation.email}}</p>
@@ -16,11 +26,19 @@
     <p id="validationMsg">{{messageValidation.password}}</p>
   {{/if }}
   <button id="submit" type="submit"  name="submit">LOG IN</button>
+
+
+  <div class="logintypes">
+    <input id="customer"  type="radio" name="logintype" value="customer" checked ><label for="customer">Customer</label>
+    <input id="dataentry" type="radio" name="logintype" value="dataentry"><label for="dataclerk"> Data Entry Clerk</label>
+  </div>
+
   </form>
+  
 
 
     <div class="noaccount">
-     <div class="noaccount-title">  <a href="/reg">CAN'T LOG IN?</a></div>
+     <div class="noaccount-title">  <a href="/reg">No Account?</a></div>
     </div>
 
  </div>

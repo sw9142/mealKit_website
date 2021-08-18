@@ -82,7 +82,9 @@ a {
   overflow: hidden;
 }
 
-.inner-howitworks {
+.inner-howitworks,
+.inner-onthemenu,
+.inner-desc {
   width: 100%;
   height: 100%;
   padding: 0rem 2rem 5rem 2rem;
@@ -90,13 +92,6 @@ a {
   overflow: hidden;
 }
 
-.inner-onthemenu {
-  width: 100%;
-  height: 100%;
-  padding: 0rem 2rem 5rem 2rem;
-  margin: 0 auto;
-  overflow: hidden;
-}
 .navbar_logo {
   padding: 11px 14px;
   font-size: 29px;
@@ -140,24 +135,44 @@ a {
 
 .navbar_login {
   margin: 0;
-  padding: 11px 14px;
+  padding: 11px 2px;
+
   display: flex;
 }
 
 .navbar_login button {
   background-color: white;
   border: solid 1px #b3bc6d;
-  margin: 3px;
+  margin: 1px;
   border-radius: 5px;
   font-family: "Noto Sans JP", sans-serif;
   padding: 6px;
   width: 70px;
   color: var(--text-color);
 }
-
+.loginuser {
+  font-size: 0.8rem;
+  width: 100%;
+  text-align: right;
+}
 #login {
   transition: all 1.5s;
   cursor: pointer;
+}
+
+#logout {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  color: white;
+}
+
+#shoppingCart {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #f5f2ee;
+  color: #e69206;
+  width: 130px;
 }
 
 #signup {
@@ -226,7 +241,6 @@ section {
   color: white;
   padding: 1vw 2vw;
   transition: all 0.4s;
-
   box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
 }
 
@@ -342,17 +356,6 @@ section {
   color: rgb(97 102 59);
 }
 
-.mealtype-lunch:hover,
-.mealtype-dinner:hover {
-  color: whitesmoke;
-  background-color: rgb(97 102 59);
-}
-
-.mealtype-dinner:focus .mealtype-lunch {
-  color: rgb(97 102 59);
-  background-color: whitesmoke;
-}
-
 .slide-prev {
   font-size: 2rem;
   cursor: pointer;
@@ -381,6 +384,10 @@ section {
   overflow: unset;
   margin: 0;
   max-width: 95%;
+}
+
+.hidden {
+  display: none;
 }
 
 .meal-card {
@@ -622,7 +629,6 @@ footer {
   text-align: center;
   font-family: "Lobster", cursive;
   margin: 4rem 0 1rem 0;
-  /* color: #61663b; */
   color: #c98106;
   text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
 }
@@ -776,7 +782,7 @@ footer {
   font-size: 1.1rem;
   width: 90%;
   border-radius: 5px;
-  margin: 1vw auto 2vw auto;
+  margin: 1vw auto 1vw auto;
   border: none;
   background-color: #e69206;
   transition: all 1s;
@@ -794,6 +800,23 @@ footer {
   background-color: #c98209;
 }
 
+.logintypes {
+  width: 100%;
+  display: flex;
+  font-size: 0.6rem;
+  align-items: center;
+}
+
+#customer,
+#dataentry {
+  width: unset;
+  height: unset;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+.logintypes label {
+  padding-right: 1rem;
+}
 .noaccount {
   width: 100%;
   text-align: right;
@@ -802,11 +825,34 @@ footer {
   transition: all 0.5s;
   text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
   padding: 1rem;
+  margin-top: 0.5rem;
 }
 
 .noaccount:hover {
   transform: translateY(2px);
 }
+
+#msglogin {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-left: 1.4rem;
+}
+
+#msgDesc {
+  max-width: 700px;
+  margin: 12rem auto;
+  padding: 1rem;
+  font-size: 3vw;
+}
+
+#errlogin {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
 /*-----------------<regist.hbs>------------------------*/
 
 .repage-img img {
@@ -894,7 +940,547 @@ footer {
 .signinform button:hover {
   background-color: #c98209;
 }
+
+/*-----------------<welcome.hbs>------------------------*/
+
+.welcomepage {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.welcomepage-img {
+  width: 100%;
+  height: 100%;
+}
+.welcomepage img {
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+
+.welcomepage-message {
+  position: absolute;
+  margin: 1rem;
+  padding: 1rem;
+  top: 3rem;
+  left: 3rem;
+  z-index: 2;
+}
+
+.welcomepage_hiyou {
+  padding-top: 3rem;
+  font-size: 3.5rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+#comfortmeal {
+  font-size: 2rem;
+}
+
+.welcomepage_welcome {
+  margin: 0.6rem;
+  font-size: 2rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+/*-----------customer-------------*/
+
+.customerDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
+}
+/*--------- data entry-------------*/
+.dataentryDash {
+  font-size: 1rem;
+  color: #61663b;
+  margin: 1rem;
+}
+
+.gotomenu_editpage {
+  z-index: 2;
+}
+
+.gotomenu_editpage button {
+  border: unset;
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  margin: 1rem;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 15rem;
+  height: 3rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .welcomepage_hiyou {
+    padding-top: 0;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+  }
+  .dataentryDash {
+    margin-top: 2.9rem;
+    font-size: 0.8rem;
+  }
+  .customerDash {
+    margin-top: 2.9rem;
+    font-size: 0.8rem;
+  }
+  .welcomepage_welcome {
+    margin: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .gotomenu_editpage button {
+    width: auto;
+    font-size: 0.7rem;
+    height: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 1rem;
+  }
+}
+
+/*---------------menu_edit.hbs--------------*/
+.addNewMeal {
+  width: 100%;
+
+  padding: 1rem;
+  height: 100%;
+}
+
+.addNewMeal form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 1rem;
+  width: 60vw;
+  margin: 0 auto;
+  color: rgb(117 117 117);
+}
+
+.addNewMeal form input,
+.addNewMeal form select,
+.addNewMeal form select option {
+  padding: 0.6rem;
+  font-size: 1rem;
+  width: 90%;
+  border-radius: 2px;
+  margin: 0.5rem auto;
+  color: rgb(117 117 117);
+  border: none;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+.addNewMeal form label {
+  padding: 0.3rem 1.9rem;
+}
+
+#imageURL,
+.addNewMeal form label {
+  grid-column: span 2;
+}
+
+.addNewMeal form button {
+  grid-column: 2/3;
+  border: unset;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  cursor: pointer;
+  justify-self: end;
+  margin: 0.5rem 2rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  text-align: center;
+}
+@media only screen and (max-width: 750px) {
+  .addNewMeal form {
+    width: 100%;
+  }
+  .addNewMeal form input,
+  .addNewMeal form select,
+  .addNewMeal form label,
+  .addNewMeal form select option {
+    font-size: 0.8rem;
+  }
+}
+
+/*------------------update Meals------------------------*/
+.updateMeal {
+  width: 100%;
+  padding: 2rem;
+  height: 100%;
+}
+.updateMeal form {
+  width: 60rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  padding-top: 1rem;
+  margin: 0 auto;
+  border: 1px solid rgb(202, 202, 202);
+}
+
+.updateMeal form label,
+.updateMeal form input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  color: rgb(117 117 117);
+  margin: 0.5rem auto;
+  border: none;
+}
+
+.updateMeal form label {
+  color: black;
+}
+
+#imageURL {
+  grid-column: 1;
+}
+#imageURL2 {
+  align-self: center;
+  justify-self: center;
+  grid-column: 2/3;
+  width: 50%;
+  height: 70%;
+}
+#imageURL3 {
+  grid-column: 3/5;
+  display: flex;
+}
+
+.updateMeal form .buttons {
+  grid-column: 4/5;
+  display: flex;
+  justify-self: end;
+  margin: 1rem;
+  height: 50px;
+}
+
+.updateMeal form button {
+  border: unset;
+  background-color: #e69206;
+  transition: all 1s;
+  color: white;
+  cursor: pointer;
+  margin: 0.5rem;
+  width: 5rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  text-align: center;
+}
+
+.allmenuwapper {
+  width: 100%;
+  margin: 0 auto;
+}
+.button_allMenu {
+  border: unset;
+  background-color: rgb(97, 102, 59);
+  transition: all 1s;
+  width: 10rem;
+  height: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+
+@media only screen and (max-width: 1070px) {
+  .updateMeal form {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 880px) {
+  .updateMeal {
+    padding: 0;
+  }
+  .updateMeal form {
+    display: block;
+  }
+  #imageURL3 {
+    display: block;
+  }
+  .updateMeal form label,
+  .updateMeal form input {
+    width: 100%;
+  }
+}
+/*------------------desc.hbs----------------------*/
+.desc_picture-wrapper {
+  width: 80%;
+  height: 45rem;
+  position: relative;
+  margin: 5rem auto 1rem auto;
+}
+
+.desc_picture {
+  width: 100%;
+  height: 100%;
+}
+
+.desc_picture_strip {
+  background-color: rgba(255, 255, 255, 0.637);
+  width: 100%;
+  height: 8rem;
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.desc_picture_cookingtime,
+.desc_picture_calories,
+.desc_picture_serving {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.desc_picture_contents_wrapper {
+  margin-top: 2rem;
+}
+
+.desc_picture_strip_title {
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_strip_contents {
+  size: 1.5rem;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_title {
+  width: 100%;
+  font-size: 4rem;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  margin: 0rem 0 1rem 0;
+  color: #c98106;
+  text-shadow: 1px 1px rgba(25, 42, 70, 0.2);
+}
+
+.desc_picture_desc {
+  padding: 0rem 8rem;
+  margin: 0rem 1rem;
+}
+
+.gotocart {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 2rem;
+}
+
+.gotocartbtn {
+  border: unset;
+  background-color: rgb(97, 102, 59);
+  transition: all 1s;
+  width: 10rem;
+  font-size: 1rem;
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+
+/*-----------------<shoppingcart.hbs>------------------------*/
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.shoppingcart_wrapper {
+  margin: 8rem 1rem;
+}
+.shoppingcart_table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 1vw;
+}
+.shoppingcart_tabletitle {
+  padding: 1.5rem;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #959b6a;
+  border-bottom: 3px solid #61663b;
+}
+
+#shoppingcart_image {
+  width: 20vw;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+
+#sc_image {
+  text-align: center;
+}
+
+#sc_title,
+#sc_qty,
+#sc_price {
+  width: 350px;
+  padding: 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.5vw;
+}
+
+#sc_qty,
+#sc_price {
+  text-align: center;
+}
+
+.sc_removebtn {
+  border: solid 1px #b3bc6d;
+  border-radius: 2px;
+  font-size: 1vw;
+  margin: 0rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: #f5f2ee;
+  color: #e69206;
+  padding: 0.2rem;
+  transition: all 0.4s;
+}
+.sc_checkoutbtn {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: #e69206;
+  color: white;
+  border: solid 1px #b3bc6d;
+  margin: 1px;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", sans-serif;
+  padding: 6px;
+  width: 20vw;
+}
+.shoppingcart_msg {
+  color: red;
+  font-size: 0.9rem;
+}
+.sc_removebtn_wrapper {
+  width: 350px;
+  padding: 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+}
+.sc_removebtn:hover,
+.sc_checkoutbtn:hover {
+  transition: transform 0.2s;
+}
+
+.shoppingcart_totalprice {
+  margin: 1rem;
+  padding-right: 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#sc_totalprice {
+  padding: 1rem;
+  font-size: 1.5vw;
+}
+#sc_chectoutbtn_div {
+  vertical-align: middle;
+}
+/*---------------review.hbs--------------*/
+.section_review {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.5rem;
+}
+.customer_reviews {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
+  margin: auto;
+}
+
+.section_review_title {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Abril Fatface", cursive;
+  margin: 3rem 0rem;
+}
+.customer_reviews_profile {
+  display: flex;
+  justify-content: center;
+  padding: 0.4rem;
+  vertical-align: middle;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+.customer_reviews_profilepic {
+  margin: 0.4rem;
+}
+
+.customer_reviews_profilesaid {
+  margin-top: 5rem;
+}
+.customer-pic {
+  width: 150px;
+  height: 100px;
+}
+
+.customer_reviews_comments {
+  text-align: center;
+}
+
+.customer_reviews_comments_stars {
+  width: 80%;
+  margin-top: 0.5rem;
+  margin: 0 auto;
+}
+.customer_reviews_stars {
+  margin-top: 1rem;
+  text-align: center;
+}
+.customer_reviews_stars i {
+  padding: 0.4rem;
+  font-size: 2rem;
+  color: rgb(255, 196, 0);
+}
+
+@media only screen and (max-width: 800px) {
+  .customer-pic {
+    width: 100px;
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 690px) {
+  .customer_reviews_profile {
+    display: block;
+  }
+  .section_review_title {
+    font-size: 1.3rem;
+  }
+  .customer_reviews_stars i {
+    font-size: 0.5rem;
+  }
+  .customer_reviews_profilesaid {
+    margin-top: 0;
+  }
+}
 /*-----------------------------------------------------------------------------------------*/
+
 @media only screen and (min-width: 1200px) {
   .inner {
     max-width: 1100px;
@@ -903,6 +1489,9 @@ footer {
     max-width: 1400px;
   }
   .inner-onthemenu {
+    max-width: 1100px;
+  }
+  .inner-desc {
     max-width: 1100px;
   }
 }
@@ -921,6 +1510,7 @@ footer {
     padding: 10px;
     position: relative;
     height: 100%;
+    z-index: 3;
   }
   .navbar {
     display: flex;
@@ -995,7 +1585,8 @@ footer {
   }
 
   .inner,
-  .inner-howitworks {
+  .inner-howitworks,
+  .inner-desc {
     padding: 0 1rem;
   }
 
@@ -1178,6 +1769,78 @@ footer {
   .footer-subscription {
     width: 100%;
     margin: 0 auto;
+  }
+  .welcomepage-message {
+    left: 0;
+  }
+  #comfortmeal {
+    font-size: 4rem;
+  }
+
+  /*desc.hbs*/
+  .desc_picture-wrapper {
+    height: 100%;
+  }
+
+  .desc_picture_title {
+    font-size: 8vw;
+  }
+  .desc_picture_desc {
+    padding: 0rem 5rem;
+  }
+  .desc_picture {
+    height: auto;
+  }
+
+  .desc_included,
+  .desc_desc {
+    font-size: 2vw;
+  }
+
+  .desc_picture_strip_title {
+    font-size: 2.5vw;
+  }
+  .desc_picture_strip_contents {
+    font-size: 1.9vw;
+  }
+
+  .desc_picture_strip {
+    height: 18vw;
+  }
+
+  .desc_picture_contents_wrapper {
+    margin-top: 4vw;
+  }
+
+  @media only screen and (max-width: 750px) {
+    .shoppingcart_table {
+      font-size: 1.3vw;
+    }
+
+    #sc_title,
+    #sc_qty,
+    #sc_price {
+      font-size: 2vw;
+    }
+    #sc_totalprice {
+      font-size: 2.4vw;
+    }
+
+    .shoppingcart_totalprice {
+      padding-right: 0rem;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .desc_picture_desc {
+      padding: 0rem 2rem;
+    }
+    .desc_picture {
+      height: 50%;
+    }
+    .sc_checkoutbtn {
+      font-size: 3vw;
+    }
   }
 }
 

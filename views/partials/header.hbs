@@ -8,19 +8,48 @@
             <nav class="navbar">
               <a href="/"><div class="navbar_logo">ComfortMeal</div></a>
               <ul class="navbar_menu">
-                <li><a href="./menu">On The Menu</a></li>
-                <li><a href="">How It Works</a></li>
-                <li><a href="">Review</a></li>
-                <li><a href="">Coupon</a></li>
+                <li><a href="/menu">On The Menu</a></li>
+                <li><a href="/#howitworks">How It Works</a></li>
+                <li><a href="/#section_review">Review</a></li>
+           
               </ul>
-              <ul class="navbar_login">
-                <a href="/login"
-                  ><button type="submit" id="login">Log In</button></a
+
+              {{#if user}}
+
+              <div class="loginuser">
+               Hello? 
+                        {{#if user.isDataEntry}}
+                          admin
+                          {{user.firstName}} {{user.lastName}} 
+                         </div>
+                           <ul class="navbar_login">
+                           <a href="/user/logout"><button type="submit" id="logout">Log out</button></a>
+                       
+      
+                           <a href="/menu_edit"><button type="submit" id="shoppingCart">Editing Page</button></a>
+                           </ul>
+                           
+                        {{else}}
+                        {{user.firstName}} {{user.lastName}} 
+                          </div>
+                          <ul class="navbar_login">
+                            <a href="/user/logout"><button type="submit" id="logout">Log out</button></a>
+                            <a href="/user/shoppingcart"><button type="submit" id="shoppingCart">Shopping Cart</button></a>
+                          </ul>
+
+                        {{/if}}
+               
+              
+              {{else}}
+                <ul class="navbar_login">
+                <a href="/user/login"><button type="submit" id="login">Log In</button></a
                 >
-                <a href="/reg"
-                  ><button type="submit" id="signup">Sign Up</button></a
+                <a href="/user/reg"><button type="submit" id="signup">Sign Up</button></a
                 >
               </ul>
+              {{/if}}
+
+
               <div class="menubtn">
                 <i class="fas fa-bars" id="menu"></i>
               </div>

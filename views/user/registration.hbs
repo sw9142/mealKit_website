@@ -5,7 +5,7 @@
     </div>
     <div class="regpage-formcontainer">
         <div class="regpage-title">Create Account</div>
-        <form action="/reg" method="post" class="signinform" >
+        <form action="/user/reg" method="post" class="signinform" >
         <!-- first name -->
         <input id="fname"  type="text" name="fname" placeholder="First Name" value="{{value.fname}}" autofocus>
         {{#if messageValidation.fname}}
@@ -26,6 +26,8 @@
         {{#if messageValidation.password}}
         <p id="validationMsg">{{messageValidation.password}}</p>
         {{/if}}
+    
+
         <button id="submit" type="submit"  name="submit">Sign Up</button>
         </form>
     </div>

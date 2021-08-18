@@ -7,7 +7,7 @@
             <div class="onthemenu-mealtype">
                  {{category_cm}} 
             </div>
-            <ul class="onthemenu-meal-list" data-position="0">
+            <ul class="onthemenu-meal-list"  data-position="0">
               
                 {{#each classicMeals}}
                       {{>mealCardAll this}}
@@ -25,6 +25,18 @@
                   {{>mealCardAll this}}
                 {{/each}}
              </ul>
+          <div id="allMenu" style="height: 5rem;"></div>
+        <div class="onthemenu-mealtype" >
+                 All menu
+              </div>
+
+            <ul class="onthemenu-meal-list"  data-position="0">
+                {{#each allMeals}}
+                  {{>mealCardAll this}}
+                {{/each}}
+             </ul>
+
+
 
         </div>
 </section>

@@ -1,7 +1,7 @@
    {{>hero}}
  
-  <section>
-        <div class="inner-howitworks">
+  <section id="howitworks">
+        <div  class="inner-howitworks">
           <div class="howitworks-maintitle">
             <h1>How It Works?</h1>
           </div>
@@ -68,10 +68,20 @@
               </div>
             </div>
           </div>
-            <ul class="meal-list" data-position="0">
-                  {{#each menu}}
-                    {{>mealCard this}}
-                  {{/each}}
-            </ul>        
+          <div>
+              <ul class="meal-list" data-position="0" id="lunch">
+                    {{#each menuLunch}}
+                      {{>mealCard this}}
+                    {{/each}}
+              </ul>   
+              <ul class="meal-list hidden" data-position="0" id="dinner" >
+                    {{#each menuDinner}}
+                      {{>mealCard this}}
+                    {{/each}}
+              </ul> 
+            </div>      
+        </div>
+        <div>
+          {{> review}}
         </div>
       </section>

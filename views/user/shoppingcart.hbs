@@ -1,0 +1,40 @@
+
+
+
+<div class="inner-desc">
+    <div class="shoppingcart_wrapper">
+        <table class="shoppingcart_table">
+          <h4 class="shoppingcart_msg">{{message}}</h4>
+                <tr >
+                <th class="shoppingcart_tabletitle">Image</th>
+                <th class="shoppingcart_tabletitle">Name</th>
+                <th class="shoppingcart_tabletitle">QTY</th>
+                <th class="shoppingcart_tabletitle">Price</th>
+                  <th class="shoppingcart_tabletitle">Btn</th>
+              
+                </tr>
+
+            {{#if hasMeals}}
+            <tbody class="shoppingcart_tablecontents">
+                {{#each menus}}
+                <tr>
+                <td id="sc_image" ><img src="/meals/{{menus.imageURL}}" id="shoppingcart_image"></td>
+                <td id="sc_title">{{menus.title}}</td>
+            
+                <td id="sc_qty">{{qty}}</td>
+                <td id="sc_price">{{menus.price}}</td>
+                <td id="sc_removebtn_wrapper"><button type="submit" class="sc_removebtn" onclick="window.location.href='/user/remove_menu/{{id}}'" action="">Remove item</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+            {{/if}}
+         
+        </table>
+           <div class="shoppingcart_totalprice">
+                <div id="sc_totalprice">Total Price:{{cartTotal}}</div>
+                <div id="sc_chectoutbtn_div" ><button type="submit" class="sc_checkoutbtn " onclick="window.location.href='/user/check_out'" action="">Check out</button></div>
+            </div>
+        <br>
+  
+    </div>
+</div>
