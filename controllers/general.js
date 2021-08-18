@@ -1,104 +1,321 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 const menuList = require("../models/menuList");
+const mealModule = require("../models/mealKit");
+
+/*
+Name: Sewon Choi 
+GitHub Repository: https://github.com/sw9142/mealKit_website 
+Heroku URL: https://comfortmeal.herokuapp.com/
+*/
 
 router.get("/", (req, res) => {
-  res.render("general/home", {
-    menu: menuList.topMealList(),
-  });
+  mealModule
+    .find({})
+    .exec()
+    .then((data) => {
+      data = data.map((value) => value.toObject());
+
+      topDinner = [];
+      topLunch = [];
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].topMeal === true && data[i].time === "lunch") {
+          topLunch.push(data[i]);
+        }
+      }
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].topMeal === true && data[i].time === "dinner") {
+          topDinner.push(data[i]);
+        }
+      }
+
+      res.render("general/home", {
+        menuLunch: topLunch,
+        menuDinner: topDinner,
+      });
+    });
 });
 
 router.get("/menu", (req, res) => {
-  res.render("general/menu", {
-    menu: menuList.topMealList(),
-    category_cm: menuList.classicMeals("Classic Meals")[0].category,
-    category_km: menuList.classicMeals("Kid-Friendly Meals")[0].category,
-    classicMeals: menuList.classicMeals("Classic Meals"),
-    kidMeals: menuList.classicMeals("Kid-Friendly Meals"),
+  mealModule
+    .find({})
+    .exec()
+    .then((data) => {
+      data = data.map((value) => value.toObject());
+      allMeal = data;
+      global.allMeal = allMeal;
+      var classicMeals = [];
+      var kidMeals = [];
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].category === "Classic Meals") {
+          classicMeals.push(data[i]);
+        }
+      }
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].category === "Kid-Friendly Meals") {
+          kidMeals.push(data[i]);
+        }
+      }
+
+      res.render("general/menu", {
+        category_cm: "classicMeals",
+        category_km: "kid Meals",
+        classicMeals: classicMeals,
+        kidMeals: kidMeals,
+        allMeals: data,
+      });
+    });
+});
+
+router.get("/menu_edit", (req, res) => {
+  if (req.session.user && req.session.user.isDataEntry) {
+    mealModule.find().count({}, (err, count) => {
+      if (err) {
+        return res.send(err);
+      } else if (count === 0) {
+        mealModule.collection.insertMany(menuList.listExport(), (err, docs) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            res.redirect("general/menu_edit");
+          }
+        });
+      } else {
+        mealModule
+          .find({})
+          .exec()
+          .then((data) => {
+            data = data.map((value) => value.toObject());
+
+            res.render("general/menu_edit", {
+              msg: "Data was already loaded",
+              data: data,
+            });
+          });
+      }
+    });
+  } else {
+    res.redirect("/menu");
+  }
+});
+//add new meal
+router.post("/menu_edit", (req, res) => {
+  const {
+    title,
+    included,
+    desc,
+    category,
+    price,
+    cookingTime,
+    serving,
+    calories,
+    topMeal,
+    time,
+    imageURL,
+  } = req.body;
+
+  const newMeal = new mealModule({
+    title: title,
+    included: included,
+    desc: desc,
+    category: category,
+    price: price,
+    cookingTime: cookingTime,
+    serving: serving,
+    calories: calories,
+    time: time,
+    imageURL: imageURL,
   });
-});
 
-router.get("/reg", (req, res) => {
-  res.render("general/registration");
-});
-
-router.post("/reg", (req, res) => {
-  let isValidated = true;
-  let messageValidation = {};
-  let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
-  let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
-
-  const { fname, lname, email, password } = req.body;
-
-  if (typeof fname !== "string" || fname.length === 0) {
-    isValidated = false;
-    messageValidation.fname = "Please enter your first name :)";
-  } else if (typeof lname !== "string" || lname.length === 0) {
-    isValidated = false;
-    messageValidation.lname = "Please enter your last name :)";
-  } else if (email.length === 0) {
-    isValidated = false;
-    messageValidation.email = "Please enter your email :)";
-  } else if (password.length === 0) {
-    isValidated = false;
-    messageValidation.password = "Please enter the password";
-  } else if (fname.length <= 2) {
-    isValidated = false;
-    messageValidation.fname = "Please let us know your full first name :)";
-  } else if (lname.length <= 2) {
-    isValidated = false;
-    messageValidation.lname = "Please let us know your full last name :)";
-  } else if (!regEpx_email.test(email)) {
-    isValidated = false;
-    messageValidation.email = "Please enter your email correctly";
-  } else if (!regEpx_password.test(password)) {
-    isValidated = false;
-    messageValidation.password =
-      "Password must be more than 8 characters and contain at least one uppercase and one number digit";
+  if (topMeal === "TopMeal: true") {
+    newMeal.topMeal = true;
+  } else if (topMeal === "TopMeal: false") {
+    newMeal.topMeal = false;
   }
+  newMeal
+    .save()
+    .then((saved) => {
+      console.log(`Meal ${saved.title} has been saved to the database.`);
 
-  if (isValidated) {
-    res.send("Success! :)");
-    const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey(
-      "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"
-    );
-  } else {
-    res.render("general/registration", {
-      value: req.body,
-      messageValidation: messageValidation,
+      req.files.imageURL.name = `pro_pic_${saved._id}${
+        path.parse(req.files.imageURL.name).ext
+      }`;
+
+      req.files.imageURL
+        .mv(`static/meals/${req.files.imageURL.name}`)
+        .then(() => {
+          mealModule
+            .updateOne(
+              {
+                _id: saved._id,
+              },
+              {
+                imageURL: req.files.imageURL.name,
+              }
+            )
+            .then(() => {
+              console.log(
+                "Meal document was updated with the meal pic file name."
+              );
+              res.redirect("/menu_edit");
+            })
+            .catch((err) => {
+              console.log(`Error updating the user.  ${err}`);
+            });
+        });
+    })
+    .catch((err) => {
+      console.log(`Error adding user to the database.  ${err}`);
     });
-  }
 });
 
-router.get("/login", (req, res) => {
-  res.render("general/login");
-});
-
-router.post("/login", (req, res) => {
-  let isValidated = true;
-  let messageValidation = {};
-  let regEpx_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g; // retrieved from https://regexr.com/3e48o
-  let regEpx_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; //retrieved from https://regexr.com/3bfsi
-
-  const { email, password } = req.body;
-
-  if (email.length === 0 || !regEpx_email.test(email)) {
-    isValidated = false;
-    messageValidation.email = "Please enter your email address correctly";
-  } else if (password.length === 0 || !regEpx_password.test(password)) {
-    isValidated = false;
-    messageValidation.password =
-      "Password must be more than 8 characters and contain at least one uppercase and one number digit";
-  }
-
-  if (isValidated) {
-    res.send("Success! :)");
+router.post("/menu_edit_update", (req, res) => {
+  if (!req.body.imageURL && !req.files) {
+    mealModule
+      .updateOne(
+        {
+          title: req.body.title,
+        },
+        {
+          $set: {
+            title: req.body.title,
+            included: req.body.included,
+            desc: req.body.desc,
+            category: req.body.category,
+            price: req.body.price,
+            cookingTime: req.body.cookingTime,
+            serving: req.body.serving,
+            calories: req.body.calories,
+            topMeal: req.body.topMeal,
+            time: req.body.time,
+          },
+        }
+      )
+      .exec()
+      .then(() => {
+        console.log("Successfully updated meal: " + req.body.title);
+        res.redirect("/menu_edit");
+      })
+      .catch((err) => {
+        console.log(`Error updating the meal.  ${err}`);
+      });
   } else {
-    res.render("general/login", {
-      value: req.body,
-      messageValidation: messageValidation,
+    mealModule
+      .updateOne(
+        {
+          title: req.body.title,
+        },
+        {
+          $set: {
+            title: req.body.title,
+            included: req.body.included,
+            desc: req.body.desc,
+            category: req.body.category,
+            price: req.body.price,
+            cookingTime: req.body.cookingTime,
+            serving: req.body.serving,
+            calories: req.body.calories,
+            topMeal: req.body.topMeal,
+            time: req.body.time,
+            imageURL: req.files.imageURL.name,
+          },
+        }
+      )
+      .exec()
+      .then(() => {
+        if (req.files.imageURL.name) {
+          req.files.imageURL.name = `pro_pic_${req.files.imageURL.name}${
+            path.parse(req.files.imageURL.name).ext
+          }`;
+
+          req.files.imageURL
+            .mv(`static/meals/${req.files.imageURL.name}`)
+            .then(() => {
+              mealModule
+                .updateOne(
+                  {
+                    title: req.body.title,
+                  },
+                  {
+                    imageURL: req.files.imageURL.name,
+                  }
+                )
+                .then(() => {
+                  console.log(
+                    "Successfully updated meal with picture: " + req.body.title
+                  );
+                  res.redirect("/menu_edit");
+                });
+            });
+        } else {
+          console.log("Successfully updated meal: " + req.body.title);
+          res.redirect("/menu_edit");
+        }
+      })
+      .catch((err) => {
+        console.log(`Error updating the meal.  ${err}`);
+      });
+  }
+});
+
+router.post("/menu_edit_delete", (req, res) => {
+  mealModule
+    .deleteOne({
+      title: req.body.title,
+    })
+    .exec()
+    .then(() => {
+      console.log("Successfully removed user: " + req.body.title);
+      res.redirect("/menu_edit");
     });
+});
+
+router.get("/welcome", (req, res) => {
+  res.render("general/welcome");
+});
+
+router.get("/dataentry", (req, res) => {
+  res.render("general/dataentry");
+  if (req.session.user.isDataEntry) {
+    res.render("general/dataentry");
+  } else {
+    res.render("general/customer");
+  }
+});
+
+router.get("/customer", (req, res) => {
+  if (!req.session.user.isDataEntry) {
+    res.render("general/customer");
+  } else {
+    res.render("general/dataentry");
+  }
+});
+
+router.get("/desc/:id", (req, res) => {
+  const id = req.params.id;
+  let messageValidation;
+
+  if (id === "home.js") {
+  } else {
+    if (!req.session.user) {
+      messageValidation = "Sorry, you must be a customer :(";
+    }
+    mealModule
+      .find({ _id: id })
+      .exec()
+      .then((data) => {
+        data = data.map((value) => value.toObject());
+
+        res.render("general/desc", {
+          data: data,
+          messageValidation: messageValidation,
+        });
+      });
   }
 });
 
